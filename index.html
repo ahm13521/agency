@@ -10,16 +10,15 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#08090f;
-  --bg2:#0c0f1a;
-  --accent:#4a78e8;
-  --accent2:#6366f1;
-  --gold:#b89a5e;
-  --white:#dde3f0;
-  --gray:#5e6e87;
-  --card:rgba(255,255,255,0.025);
-  --border:rgba(255,255,255,0.065);
-  --ga:0 0 28px rgba(74,120,232,.15);
+  --bg:#080c14;
+  --bg2:#0d1220;
+  --accent:#3b82f6;
+  --accent2:#8b5cf6;
+  --white:#f0f4ff;
+  --gray:#8a9ab8;
+  --card:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.1);
+  --ga:0 0 32px rgba(59,130,246,.22);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
@@ -30,7 +29,7 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--whi
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   padding:18px 60px;display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(24px);background:rgba(8,9,15,.88);
+  backdrop-filter:blur(24px);background:rgba(8,12,20,.88);
   border-bottom:1px solid var(--border);transition:background .3s;
 }
 .logo{
@@ -43,7 +42,7 @@ nav{
   letter-spacing:1px;transition:color .3s}
 .nav-links a:hover{color:var(--white)}
 .nav-btn{
-  padding:9px 22px;background:transparent;border:1px solid rgba(74,120,232,.5);
+  padding:9px 22px;background:transparent;border:1px solid rgba(59,130,246,.5);
   color:var(--accent);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
   letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .3s;text-decoration:none;
 }
@@ -55,7 +54,7 @@ nav{
 .hero-inner{position:relative;z-index:2;text-align:center;max-width:920px;padding:0 40px}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;padding:7px 18px;
-  background:rgba(74,120,232,.08);border:1px solid rgba(74,120,232,.2);border-radius:100px;
+  background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:100px;
   font-size:11px;font-weight:700;color:var(--accent);letter-spacing:2.5px;
   text-transform:uppercase;margin-bottom:28px;
 }
@@ -72,7 +71,7 @@ nav{
 .hero-sub{font-size:18px;color:var(--gray);line-height:1.7;max-width:580px;margin:0 auto 32px}
 .price-tag{
   display:inline-block;font-family:'Orbitron',monospace;font-size:13px;font-weight:600;
-  color:var(--white);background:rgba(74,120,232,.1);border:1px solid rgba(74,120,232,.25);
+  color:var(--white);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);
   padding:9px 22px;border-radius:4px;margin-bottom:36px;letter-spacing:2px;
 }
 .price-tag strong{color:var(--accent);font-size:20px}
@@ -89,7 +88,7 @@ nav{
   transition:left .5s;
 }
 .btn-primary:hover::after{left:100%}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(74,120,232,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(59,130,246,.25)}
 .btn-ghost{
   padding:15px 38px;background:transparent;color:var(--white);
   font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;
@@ -101,7 +100,7 @@ nav{
 /* STATS */
 #stats{
   padding:56px 60px;
-  background:linear-gradient(135deg,rgba(74,120,232,.04),rgba(99,102,241,.03));
+  background:linear-gradient(135deg,rgba(59,130,246,.04),rgba(139,92,246,.03));
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);
 }
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:900px;margin:0 auto;text-align:center}
@@ -137,7 +136,7 @@ section{padding:110px 60px}
   background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .4s;
 }
 .svc-card:hover::after{opacity:1}
-.svc-card:hover{transform:translateY(-8px);border-color:rgba(74,120,232,.2);
+.svc-card:hover{transform:translateY(-8px);border-color:rgba(59,130,246,.2);
   box-shadow:0 32px 60px rgba(0,0,0,.5),var(--ga)}
 .svc-icon{font-size:34px;margin-bottom:22px;display:block}
 .svc-card h3{font-family:'Orbitron',monospace;font-size:17px;font-weight:700;margin-bottom:10px}
@@ -150,7 +149,7 @@ section{padding:110px 60px}
   border-radius:14px;overflow:hidden;border:1px solid var(--border);
   transition:all .4s cubic-bezier(.23,1,.32,1);
 }
-.case-card:hover{transform:translateY(-10px);border-color:rgba(74,120,232,.2);
+.case-card:hover{transform:translateY(-10px);border-color:rgba(59,130,246,.2);
   box-shadow:0 40px 80px rgba(0,0,0,.5)}
 .c-preview{height:230px;position:relative;overflow:hidden}
 .p1{background:linear-gradient(135deg,#120a00,#2a1600,#120a00)}
@@ -176,7 +175,7 @@ section{padding:110px 60px}
 .m-col{height:44px;border-radius:4px;background:rgba(255,255,255,.04)}
 .sbadge{
   position:absolute;top:14px;right:14px;padding:3px 10px;
-  background:rgba(8,9,15,.9);border:1px solid rgba(255,255,255,.12);border-radius:100px;
+  background:rgba(8,12,20,.9);border:1px solid rgba(255,255,255,.12);border-radius:100px;
   font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);
 }
 .c-info{padding:26px;background:rgba(12,15,26,.96)}
@@ -199,8 +198,8 @@ section{padding:110px 60px}
   border-radius:16px;transition:all .4s;position:relative;
 }
 .p-card.hot{
-  background:linear-gradient(155deg,rgba(74,120,232,.08),rgba(99,102,241,.06));
-  border-color:rgba(74,120,232,.28);
+  background:linear-gradient(155deg,rgba(59,130,246,.08),rgba(139,92,246,.06));
+  border-color:rgba(59,130,246,.28);
 }
 .hot-badge{
   position:absolute;top:-13px;left:50%;transform:translateX(-50%);padding:5px 18px;
@@ -208,7 +207,7 @@ section{padding:110px 60px}
   font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   border-radius:100px;white-space:nowrap;
 }
-.p-card:hover{border-color:rgba(74,120,232,.22);transform:translateY(-4px);
+.p-card:hover{border-color:rgba(59,130,246,.22);transform:translateY(-4px);
   box-shadow:0 24px 48px rgba(0,0,0,.35)}
 .p-tier{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;
   letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:18px}
@@ -235,7 +234,7 @@ section{padding:110px 60px}
 .p-outline{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--white)}
 .p-outline:hover{border-color:var(--accent);color:var(--accent)}
 .p-fill{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff}
-.p-fill:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(74,120,232,.3)}
+.p-fill:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(59,130,246,.3)}
 
 /* FAQ */
 #faq{background:var(--bg)}
@@ -244,7 +243,7 @@ section{padding:110px 60px}
   border:1px solid var(--border);border-radius:12px;margin-bottom:10px;
   overflow:hidden;transition:border-color .3s;
 }
-.faq-item.open{border-color:rgba(74,120,232,.25)}
+.faq-item.open{border-color:rgba(59,130,246,.25)}
 .faq-q{
   padding:22px 26px;display:flex;justify-content:space-between;align-items:center;
   cursor:pointer;font-weight:600;font-size:15px;transition:color .3s;
@@ -268,7 +267,7 @@ section{padding:110px 60px}
 #cta::before{
   content:'';position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);width:700px;height:700px;
-  background:radial-gradient(circle,rgba(74,120,232,.05) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(59,130,246,.05) 0%,transparent 70%);
   pointer-events:none;
 }
 .cta-title{
@@ -631,23 +630,23 @@ footer{
   const pAttr = new THREE.BufferAttribute(posArr, 3);
   pGeo.setAttribute('position', pAttr);
   // Professional blue particles
-  const pMat = new THREE.PointsMaterial({ color:0x4a78e8, size:2.0, transparent:true, opacity:.5, sizeAttenuation:true });
+  const pMat = new THREE.PointsMaterial({ color:0x3b82f6, size:2.0, transparent:true, opacity:.5, sizeAttenuation:true });
   scene.add(new THREE.Points(pGeo, pMat));
 
   // Floating wireframe icosahedron — muted blue
   const icoGeo = new THREE.IcosahedronGeometry(120, 1);
-  const icoMat = new THREE.MeshBasicMaterial({ color:0x4a78e8, wireframe:true, transparent:true, opacity:.035 });
+  const icoMat = new THREE.MeshBasicMaterial({ color:0x3b82f6, wireframe:true, transparent:true, opacity:.035 });
   const ico = new THREE.Mesh(icoGeo, icoMat);
   scene.add(ico);
 
   // Second shape — indigo
   const sGeo = new THREE.IcosahedronGeometry(60, 1);
-  const sMat = new THREE.MeshBasicMaterial({ color:0x6366f1, wireframe:true, transparent:true, opacity:.05 });
+  const sMat = new THREE.MeshBasicMaterial({ color:0x8b5cf6, wireframe:true, transparent:true, opacity:.05 });
   const sph = new THREE.Mesh(sGeo, sMat);
   sph.position.set(300, -120, -80);
   scene.add(sph);
 
-  const lMat = new THREE.LineBasicMaterial({ color:0x4a78e8, transparent:true, opacity:.06 });
+  const lMat = new THREE.LineBasicMaterial({ color:0x3b82f6, transparent:true, opacity:.06 });
   let lMesh = null, frameCount = 0;
 
   function rebuildLines(){
@@ -713,7 +712,7 @@ function toggleFaq(el){
 // ─── NAV SCROLL ───────────────────────────────────────────────────────────────
 window.addEventListener('scroll', ()=>{
   document.getElementById('nav').style.background =
-    window.scrollY > 60 ? 'rgba(8,9,15,.97)' : 'rgba(8,9,15,.88)';
+    window.scrollY > 60 ? 'rgba(8,12,20,.97)' : 'rgba(8,12,20,.88)';
 });
 </script>
 </body>
