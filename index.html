@@ -10,37 +10,44 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#030712;--bg2:#060d1f;
-  --cyan:#00f5ff;--purple:#8b5cf6;--pink:#f0abfc;
-  --white:#f8fafc;--gray:#94a3b8;
-  --card:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
-  --gcyan:0 0 30px rgba(0,245,255,.25);--gpurple:0 0 30px rgba(139,92,246,.25);
+  --bg:#08090f;
+  --bg2:#0c0f1a;
+  --accent:#4a78e8;
+  --accent2:#6366f1;
+  --gold:#b89a5e;
+  --white:#dde3f0;
+  --gray:#5e6e87;
+  --card:rgba(255,255,255,0.025);
+  --border:rgba(255,255,255,0.065);
+  --ga:0 0 28px rgba(74,120,232,.15);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 
 /* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   padding:18px 60px;display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(24px);background:rgba(3,7,18,.85);
+  backdrop-filter:blur(24px);background:rgba(8,9,15,.88);
   border-bottom:1px solid var(--border);transition:background .3s;
 }
-.logo{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;letter-spacing:4px;
-  background:linear-gradient(135deg,var(--cyan),var(--purple));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{
+  font-family:'Orbitron',monospace;font-size:20px;font-weight:900;letter-spacing:4px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
 .nav-links{display:flex;gap:36px;list-style:none}
 .nav-links a{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;
   letter-spacing:1px;transition:color .3s}
-.nav-links a:hover{color:var(--cyan)}
+.nav-links a:hover{color:var(--white)}
 .nav-btn{
-  padding:9px 22px;background:transparent;border:1px solid var(--cyan);
-  color:var(--cyan);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  padding:9px 22px;background:transparent;border:1px solid rgba(74,120,232,.5);
+  color:var(--accent);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
   letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .3s;text-decoration:none;
 }
-.nav-btn:hover{background:var(--cyan);color:var(--bg);box-shadow:var(--gcyan)}
+.nav-btn:hover{background:var(--accent);color:#fff;box-shadow:var(--ga)}
 
 /* HERO */
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -48,57 +55,61 @@ nav{
 .hero-inner{position:relative;z-index:2;text-align:center;max-width:920px;padding:0 40px}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;padding:7px 18px;
-  background:rgba(0,245,255,.07);border:1px solid rgba(0,245,255,.2);border-radius:100px;
-  font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:2.5px;
+  background:rgba(74,120,232,.08);border:1px solid rgba(74,120,232,.2);border-radius:100px;
+  font-size:11px;font-weight:700;color:var(--accent);letter-spacing:2.5px;
   text-transform:uppercase;margin-bottom:28px;
 }
-.badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:blink 2s infinite}
+.badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
 .hero-title{
   font-family:'Orbitron',monospace;font-size:clamp(36px,6.5vw,76px);
   font-weight:900;line-height:1.08;letter-spacing:-1px;margin-bottom:22px;
 }
-.grad-text{background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.grad-text{
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
 .hero-sub{font-size:18px;color:var(--gray);line-height:1.7;max-width:580px;margin:0 auto 32px}
 .price-tag{
   display:inline-block;font-family:'Orbitron',monospace;font-size:13px;font-weight:600;
-  color:var(--white);background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);
+  color:var(--white);background:rgba(74,120,232,.1);border:1px solid rgba(74,120,232,.25);
   padding:9px 22px;border-radius:4px;margin-bottom:36px;letter-spacing:2px;
 }
-.price-tag strong{color:var(--purple);font-size:20px}
+.price-tag strong{color:var(--accent);font-size:20px}
 .btn-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn-primary{
-  padding:15px 38px;background:linear-gradient(135deg,var(--cyan),var(--purple));
-  color:var(--bg);font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:15px 38px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
   letter-spacing:1px;border:none;border-radius:6px;cursor:pointer;text-decoration:none;
   display:inline-flex;align-items:center;gap:8px;transition:all .3s;position:relative;overflow:hidden;
 }
 .btn-primary::after{
   content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
   transition:left .5s;
 }
 .btn-primary:hover::after{left:100%}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,245,255,.2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(74,120,232,.25)}
 .btn-ghost{
   padding:15px 38px;background:transparent;color:var(--white);
   font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;
-  border:1px solid rgba(255,255,255,.18);border-radius:6px;cursor:pointer;text-decoration:none;
+  border:1px solid rgba(255,255,255,.14);border-radius:6px;cursor:pointer;text-decoration:none;
   display:inline-flex;align-items:center;gap:8px;transition:all .3s;
 }
-.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
 /* STATS */
 #stats{
   padding:56px 60px;
-  background:linear-gradient(135deg,rgba(0,245,255,.04),rgba(139,92,246,.04));
+  background:linear-gradient(135deg,rgba(74,120,232,.04),rgba(99,102,241,.03));
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);
 }
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:900px;margin:0 auto;text-align:center}
-.stat-n{font-family:'Orbitron',monospace;font-size:38px;font-weight:900;
-  background:linear-gradient(135deg,var(--cyan),var(--purple));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-n{
+  font-family:'Orbitron',monospace;font-size:38px;font-weight:900;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
 .stat-l{color:var(--gray);font-size:12px;font-weight:500;letter-spacing:1px;margin-top:6px}
 
 /* SECTIONS */
@@ -106,9 +117,9 @@ section{padding:110px 60px}
 .container{max-width:1180px;margin:0 auto}
 .s-tag{
   display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;
+  letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;
 }
-.s-tag::before{content:'';width:22px;height:1px;background:var(--cyan)}
+.s-tag::before{content:'';width:22px;height:1px;background:var(--accent)}
 .s-title{font-family:'Orbitron',monospace;font-size:clamp(26px,3.8vw,42px);
   font-weight:800;line-height:1.2;margin-bottom:14px}
 .s-sub{color:var(--gray);font-size:16px;line-height:1.75;max-width:540px}
@@ -123,11 +134,11 @@ section{padding:110px 60px}
 }
 .svc-card::after{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .4s;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .4s;
 }
 .svc-card:hover::after{opacity:1}
-.svc-card:hover{transform:translateY(-8px);border-color:rgba(0,245,255,.2);
-  box-shadow:0 32px 60px rgba(0,0,0,.4),var(--gcyan)}
+.svc-card:hover{transform:translateY(-8px);border-color:rgba(74,120,232,.2);
+  box-shadow:0 32px 60px rgba(0,0,0,.5),var(--ga)}
 .svc-icon{font-size:34px;margin-bottom:22px;display:block}
 .svc-card h3{font-family:'Orbitron',monospace;font-size:17px;font-weight:700;margin-bottom:10px}
 .svc-card p{color:var(--gray);font-size:14px;line-height:1.7}
@@ -139,78 +150,75 @@ section{padding:110px 60px}
   border-radius:14px;overflow:hidden;border:1px solid var(--border);
   transition:all .4s cubic-bezier(.23,1,.32,1);
 }
-.case-card:hover{transform:translateY(-10px);border-color:rgba(0,245,255,.2);
+.case-card:hover{transform:translateY(-10px);border-color:rgba(74,120,232,.2);
   box-shadow:0 40px 80px rgba(0,0,0,.5)}
 .c-preview{height:230px;position:relative;overflow:hidden}
-.p1{background:linear-gradient(135deg,#1a0800,#3d1400,#1a0800)}
-.p2{background:linear-gradient(135deg,#00091a,#001540,#00091a)}
-.p3{background:linear-gradient(135deg,#0a0018,#18003a,#0a0018)}
+.p1{background:linear-gradient(135deg,#120a00,#2a1600,#120a00)}
+.p2{background:linear-gradient(135deg,#040c1a,#081830,#040c1a)}
+.p3{background:linear-gradient(135deg,#080514,#0f0a26,#080514)}
 .mockup{
   position:absolute;top:18px;left:18px;right:18px;bottom:-18px;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
   border-radius:8px 8px 0 0;overflow:hidden;
 }
-.m-bar{
-  height:26px;background:rgba(255,255,255,.06);
-  display:flex;align-items:center;padding:0 10px;gap:6px;
-}
+.m-bar{height:26px;background:rgba(255,255,255,.05);display:flex;align-items:center;padding:0 10px;gap:6px}
 .m-dot{width:7px;height:7px;border-radius:50%}
-.p1 .m-dot:nth-child(1){background:#ff5f57}
-.p1 .m-dot:nth-child(2){background:#febc2e}
-.p1 .m-dot:nth-child(3){background:#28c840}
-.p2 .m-dot:nth-child(1){background:#ff5f57}
-.p2 .m-dot:nth-child(2){background:#febc2e}
-.p2 .m-dot:nth-child(3){background:#28c840}
-.p3 .m-dot:nth-child(1){background:#ff5f57}
-.p3 .m-dot:nth-child(2){background:#febc2e}
-.p3 .m-dot:nth-child(3){background:#28c840}
+.p1 .m-dot:nth-child(1){background:#ff5f57}.p1 .m-dot:nth-child(2){background:#febc2e}.p1 .m-dot:nth-child(3){background:#28c840}
+.p2 .m-dot:nth-child(1){background:#ff5f57}.p2 .m-dot:nth-child(2){background:#febc2e}.p2 .m-dot:nth-child(3){background:#28c840}
+.p3 .m-dot:nth-child(1){background:#ff5f57}.p3 .m-dot:nth-child(2){background:#febc2e}.p3 .m-dot:nth-child(3){background:#28c840}
 .m-body{padding:14px}
 .m-hero{height:54px;border-radius:5px;margin-bottom:10px;display:flex;align-items:center;padding:0 14px}
-.p1 .m-hero{background:linear-gradient(90deg,#ff6b00,#e63900)}
-.p2 .m-hero{background:linear-gradient(90deg,#0088ff,#0033cc)}
-.p3 .m-hero{background:linear-gradient(90deg,#8b5cf6,#6d28d9)}
-.m-line{height:7px;border-radius:4px;background:rgba(255,255,255,.09);margin-bottom:7px}
+.p1 .m-hero{background:linear-gradient(90deg,#c47a30,#a85c1a)}
+.p2 .m-hero{background:linear-gradient(90deg,#3a6fd4,#2554b8)}
+.p3 .m-hero{background:linear-gradient(90deg,#5a4ec4,#3d35a8)}
+.m-line{height:7px;border-radius:4px;background:rgba(255,255,255,.08);margin-bottom:7px}
 .m-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:10px}
-.m-col{height:44px;border-radius:4px;background:rgba(255,255,255,.05)}
+.m-col{height:44px;border-radius:4px;background:rgba(255,255,255,.04)}
 .sbadge{
   position:absolute;top:14px;right:14px;padding:3px 10px;
-  background:rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.15);border-radius:100px;
+  background:rgba(8,9,15,.9);border:1px solid rgba(255,255,255,.12);border-radius:100px;
   font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);
 }
-.c-info{padding:26px;background:rgba(6,13,31,.95)}
+.c-info{padding:26px;background:rgba(12,15,26,.96)}
 .c-cat{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--cyan);margin-bottom:8px}
+  color:var(--accent);margin-bottom:8px}
 .c-info h3{font-family:'Orbitron',monospace;font-size:18px;font-weight:700;margin-bottom:8px}
 .c-info p{color:var(--gray);font-size:13px;line-height:1.65;margin-bottom:16px}
 .pills{display:flex;gap:7px;flex-wrap:wrap}
-.pill{
-  padding:3px 10px;background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:100px;font-size:10px;color:var(--gray);font-weight:500;
-}
+.pill{padding:3px 10px;background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:100px;font-size:10px;color:var(--gray);font-weight:500}
 
-/* PRICING */
+/* PRICING — 2 cards, centered */
 #pricing{background:var(--bg2)}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:28px;max-width:820px;margin:0 auto;align-items:start;
+}
 .p-card{
   padding:44px 38px;background:var(--card);border:1px solid var(--border);
   border-radius:16px;transition:all .4s;position:relative;
 }
 .p-card.hot{
-  background:linear-gradient(135deg,rgba(0,245,255,.07),rgba(139,92,246,.07));
-  border-color:rgba(0,245,255,.3);transform:scale(1.03);
+  background:linear-gradient(155deg,rgba(74,120,232,.08),rgba(99,102,241,.06));
+  border-color:rgba(74,120,232,.28);
 }
 .hot-badge{
   position:absolute;top:-13px;left:50%;transform:translateX(-50%);padding:5px 18px;
-  background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--bg);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
   font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   border-radius:100px;white-space:nowrap;
 }
-.p-card:hover:not(.hot){border-color:rgba(255,255,255,.14);transform:translateY(-4px)}
+.p-card:hover{border-color:rgba(74,120,232,.22);transform:translateY(-4px);
+  box-shadow:0 24px 48px rgba(0,0,0,.35)}
 .p-tier{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;
   letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:18px}
-.p-price{font-family:'Orbitron',monospace;font-size:50px;font-weight:900;line-height:1;margin-bottom:7px}
-.p-card.hot .p-price{background:linear-gradient(135deg,var(--cyan),var(--purple));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.p-price{font-family:'Orbitron',monospace;font-size:48px;font-weight:900;line-height:1;margin-bottom:4px}
+.p-card.hot .p-price{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.p-currency{font-family:'Orbitron',monospace;font-size:13px;font-weight:600;
+  color:var(--gray);letter-spacing:2px;margin-bottom:16px}
 .p-desc{color:var(--gray);font-size:13px;margin-bottom:28px;line-height:1.65}
 .p-div{height:1px;background:var(--border);margin-bottom:28px}
 .p-feats{list-style:none;margin-bottom:36px}
@@ -218,16 +226,16 @@ section{padding:110px 60px}
   display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;
   font-size:13px;color:var(--gray);line-height:1.5;
 }
-.p-feats li::before{content:'✦';color:var(--cyan);font-size:9px;margin-top:4px;flex-shrink:0}
+.p-feats li::before{content:'✦';color:var(--accent);font-size:9px;margin-top:4px;flex-shrink:0}
 .p-btn{
   width:100%;padding:13px;font-family:'Space Grotesk',sans-serif;font-size:13px;
   font-weight:700;letter-spacing:1px;border-radius:8px;cursor:pointer;
   transition:all .3s;text-align:center;text-decoration:none;display:block;
 }
-.p-outline{background:transparent;border:1px solid rgba(255,255,255,.14);color:var(--white)}
-.p-outline:hover{border-color:var(--cyan);color:var(--cyan)}
-.p-fill{background:linear-gradient(135deg,var(--cyan),var(--purple));border:none;color:var(--bg)}
-.p-fill:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,245,255,.25)}
+.p-outline{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--white)}
+.p-outline:hover{border-color:var(--accent);color:var(--accent)}
+.p-fill{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff}
+.p-fill:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(74,120,232,.3)}
 
 /* FAQ */
 #faq{background:var(--bg)}
@@ -236,50 +244,21 @@ section{padding:110px 60px}
   border:1px solid var(--border);border-radius:12px;margin-bottom:10px;
   overflow:hidden;transition:border-color .3s;
 }
-.faq-item.open{border-color:rgba(0,245,255,.25)}
+.faq-item.open{border-color:rgba(74,120,232,.25)}
 .faq-q{
   padding:22px 26px;display:flex;justify-content:space-between;align-items:center;
   cursor:pointer;font-weight:600;font-size:15px;transition:color .3s;
 }
-.faq-q:hover,.faq-item.open .faq-q{color:var(--cyan)}
+.faq-q:hover,.faq-item.open .faq-q{color:var(--accent)}
 .faq-ic{
   width:26px;height:26px;border:1px solid rgba(255,255,255,.1);border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;
   transition:all .3s;color:var(--gray);
 }
-.faq-item.open .faq-ic{border-color:var(--cyan);color:var(--cyan);transform:rotate(45deg)}
+.faq-item.open .faq-ic{border-color:var(--accent);color:var(--accent);transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 26px}
 .faq-item.open .faq-a{max-height:260px;padding:0 26px 22px}
 .faq-a p{color:var(--gray);font-size:14px;line-height:1.85}
-
-/* ABOUT */
-#about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.avatars{display:flex;gap:18px;margin-bottom:28px}
-.av-card{
-  flex:1;padding:26px 20px;background:var(--card);border:1px solid var(--border);
-  border-radius:14px;text-align:center;transition:all .4s;
-}
-.av-card:hover{border-color:rgba(0,245,255,.3);transform:translateY(-4px)}
-.av-img{
-  width:74px;height:74px;border-radius:50%;margin:0 auto 14px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Orbitron',monospace;font-size:28px;font-weight:900;
-  border:2px solid rgba(0,245,255,.25);
-}
-.av1{background:linear-gradient(135deg,rgba(0,245,255,.12),rgba(0,245,255,.04));color:var(--cyan)}
-.av2{background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(139,92,246,.04));color:var(--purple)}
-.av-name{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;margin-bottom:4px}
-.av-role{color:var(--gray);font-size:11px;letter-spacing:1px}
-.a-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.a-stat{
-  padding:18px;background:rgba(0,245,255,.04);border:1px solid rgba(0,245,255,.1);
-  border-radius:10px;text-align:center;
-}
-.a-stat .n{font-family:'Orbitron',monospace;font-size:26px;font-weight:800;color:var(--cyan)}
-.a-stat .l{color:var(--gray);font-size:11px;margin-top:4px}
-.about-text p{color:var(--gray);font-size:15px;line-height:1.85;margin-bottom:18px}
-.about-text p strong{color:var(--white)}
 
 /* CTA SECTION */
 #cta{
@@ -289,7 +268,7 @@ section{padding:110px 60px}
 #cta::before{
   content:'';position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);width:700px;height:700px;
-  background:radial-gradient(circle,rgba(0,245,255,.05) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(74,120,232,.05) 0%,transparent 70%);
   pointer-events:none;
 }
 .cta-title{
@@ -305,14 +284,14 @@ footer{
   display:flex;align-items:center;justify-content:space-between;
 }
 .f-logo{font-family:'Orbitron',monospace;font-size:16px;font-weight:900;letter-spacing:4px;
-  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .f-copy{color:var(--gray);font-size:12px}
 .f-links{display:flex;gap:28px}
 .f-links a{color:var(--gray);text-decoration:none;font-size:12px;transition:color .3s}
-.f-links a:hover{color:var(--cyan)}
+.f-links a:hover{color:var(--white)}
 
-/* REVEAL ANIMATIONS */
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(36px);transition:all .75s cubic-bezier(.23,1,.32,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
@@ -324,9 +303,8 @@ footer{
   section{padding:80px 28px}
   #stats{padding:52px 28px}
   .stats-row{grid-template-columns:repeat(2,1fr)}
-  .services-grid,.work-grid,.pricing-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
-  .p-card.hot{transform:none}
-  .about-grid{grid-template-columns:1fr;gap:44px}
+  .services-grid,.work-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
+  .pricing-grid{grid-template-columns:1fr;max-width:420px}
   footer{flex-direction:column;gap:20px;text-align:center}
 }
 @media(max-width:600px){
@@ -345,7 +323,6 @@ footer{
     <li><a href="#work">Work</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#about">About</a></li>
   </ul>
   <a href="https://calendly.com" target="_blank" class="nav-btn">BOOK A CALL</a>
 </nav>
@@ -360,7 +337,7 @@ footer{
       <span class="grad-text">THAT ACTUALLY SELL</span>
     </h1>
     <p class="hero-sub">Ahmed &amp; Moaz craft high-performance, visually striking websites for ambitious businesses — delivered in under 14 days.</p>
-    <div class="price-tag">Starting from <strong>$1,497</strong> · One-time payment · You own everything</div>
+    <div class="price-tag">Starting from <strong>5,000 AED</strong> · One-time payment · You own everything</div>
     <div class="btn-group">
       <a href="https://calendly.com" target="_blank" class="btn-primary">📅 Book a Free 15-Min Call</a>
       <a href="#work" class="btn-ghost">See Our Work →</a>
@@ -416,17 +393,13 @@ footer{
     </div>
     <div class="work-grid">
 
-      <!-- RESTAURANT -->
       <div class="case-card reveal">
         <div class="c-preview p1">
           <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
-            </div>
+            <div class="m-bar"><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
             <div class="m-body">
-              <div class="m-hero"><div style="width:55%;height:7px;background:rgba(255,255,255,.45);border-radius:4px"></div></div>
-              <div class="m-line" style="width:78%"></div>
-              <div class="m-line" style="width:52%"></div>
+              <div class="m-hero"><div style="width:55%;height:7px;background:rgba(255,255,255,.4);border-radius:4px"></div></div>
+              <div class="m-line" style="width:78%"></div><div class="m-line" style="width:52%"></div>
               <div class="m-cols"><div class="m-col"></div><div class="m-col"></div><div class="m-col"></div></div>
             </div>
           </div>
@@ -435,27 +408,21 @@ footer{
         <div class="c-info">
           <div class="c-cat">Restaurant · Food &amp; Beverage</div>
           <h3>Ember Kitchen Co.</h3>
-          <p>Premium restaurant site with online reservations, animated menu cards, and a moody visual identity that communicates quality before a customer ever walks in the door.</p>
+          <p>Premium restaurant site with online reservations, animated menu cards, and a visual identity that communicates quality before a customer ever walks in.</p>
           <div class="pills">
-            <span class="pill">UI Design</span>
-            <span class="pill">Reservations</span>
-            <span class="pill">Menu System</span>
-            <span class="pill">Mobile-First</span>
+            <span class="pill">UI Design</span><span class="pill">Reservations</span>
+            <span class="pill">Menu System</span><span class="pill">Mobile-First</span>
           </div>
         </div>
       </div>
 
-      <!-- GYM -->
       <div class="case-card reveal d1">
         <div class="c-preview p2">
           <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
-            </div>
+            <div class="m-bar"><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
             <div class="m-body">
-              <div class="m-hero"><div style="width:65%;height:7px;background:rgba(255,255,255,.45);border-radius:4px"></div></div>
-              <div class="m-line" style="width:70%"></div>
-              <div class="m-line" style="width:44%"></div>
+              <div class="m-hero"><div style="width:65%;height:7px;background:rgba(255,255,255,.4);border-radius:4px"></div></div>
+              <div class="m-line" style="width:70%"></div><div class="m-line" style="width:44%"></div>
               <div class="m-cols"><div class="m-col"></div><div class="m-col"></div><div class="m-col"></div></div>
             </div>
           </div>
@@ -466,25 +433,19 @@ footer{
           <h3>IronPeak Fitness</h3>
           <p>High-energy fitness studio site with class schedules, trainer profiles, and a membership flow designed to make joining feel like the only logical next step.</p>
           <div class="pills">
-            <span class="pill">Lead Gen</span>
-            <span class="pill">Scheduling</span>
-            <span class="pill">Dark Theme</span>
-            <span class="pill">Conversion</span>
+            <span class="pill">Lead Gen</span><span class="pill">Scheduling</span>
+            <span class="pill">Dark Theme</span><span class="pill">Conversion</span>
           </div>
         </div>
       </div>
 
-      <!-- REAL ESTATE -->
       <div class="case-card reveal d2">
         <div class="c-preview p3">
           <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
-            </div>
+            <div class="m-bar"><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
             <div class="m-body">
-              <div class="m-hero"><div style="width:60%;height:7px;background:rgba(255,255,255,.45);border-radius:4px"></div></div>
-              <div class="m-line" style="width:74%"></div>
-              <div class="m-line" style="width:48%"></div>
+              <div class="m-hero"><div style="width:60%;height:7px;background:rgba(255,255,255,.4);border-radius:4px"></div></div>
+              <div class="m-line" style="width:74%"></div><div class="m-line" style="width:48%"></div>
               <div class="m-cols"><div class="m-col"></div><div class="m-col"></div><div class="m-col"></div></div>
             </div>
           </div>
@@ -495,10 +456,8 @@ footer{
           <h3>Skyline Realty Group</h3>
           <p>Luxury real estate site with property listings, interactive gallery, and an inquiry system that positions the agent as the premium choice in their market.</p>
           <div class="pills">
-            <span class="pill">Listings</span>
-            <span class="pill">Gallery</span>
-            <span class="pill">Luxury Feel</span>
-            <span class="pill">Lead Capture</span>
+            <span class="pill">Listings</span><span class="pill">Gallery</span>
+            <span class="pill">Luxury Feel</span><span class="pill">Lead Capture</span>
           </div>
         </div>
       </div>
@@ -507,66 +466,55 @@ footer{
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING — 2 packages -->
 <section id="pricing">
   <div class="container">
-    <div class="s-head reveal">
-      <div class="s-tag">Transparent Pricing</div>
-      <h2 class="s-title">No surprises.<br>No retainers.</h2>
-      <p class="s-sub">One-time payments. You own everything. We don't lock you into subscriptions or upsell you after you pay.</p>
+    <div class="s-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <div class="s-tag" style="justify-content:center">Transparent Pricing</div>
+      <h2 class="s-title">Simple. Clear. Fair.</h2>
+      <p class="s-sub" style="margin:0 auto">One-time build fee. Optional monthly maintenance. No hidden costs, no lock-in.</p>
     </div>
     <div class="pricing-grid">
 
-      <div class="p-card reveal">
-        <div class="p-tier">Starter</div>
-        <div class="p-price">$997</div>
-        <p class="p-desc">Perfect for getting online fast. Clean, professional, and ready to convert.</p>
-        <div class="p-div"></div>
-        <ul class="p-feats">
-          <li>5-page website (Home, About, Services, Contact + 1)</li>
-          <li>Mobile-responsive design</li>
-          <li>Contact form integration</li>
-          <li>SEO basics (titles, meta, alt tags)</li>
-          <li>Delivered in 7 days</li>
-          <li>2 rounds of revisions</li>
-        </ul>
-        <a href="https://calendly.com" target="_blank" class="p-btn p-outline">Book a Call</a>
-      </div>
-
-      <div class="p-card hot reveal d1">
-        <div class="hot-badge">Most Popular</div>
-        <div class="p-tier">Pro</div>
-        <div class="p-price">$1,997</div>
-        <p class="p-desc">The complete package. Animations and design that make visitors stop scrolling.</p>
+      <!-- WEBSITE BUILD -->
+      <div class="p-card hot reveal">
+        <div class="hot-badge">Website Build</div>
+        <div class="p-tier" style="margin-top:12px">One-Time Payment</div>
+        <div class="p-price">5,000</div>
+        <div class="p-currency">AED</div>
+        <p class="p-desc">A complete, custom-designed business website — built to convert visitors into clients and delivered in 14 days.</p>
         <div class="p-div"></div>
         <ul class="p-feats">
           <li>Up to 8 pages, fully custom designed</li>
+          <li>Mobile-responsive &amp; fast-loading</li>
           <li>Scroll-triggered animations &amp; micro-interactions</li>
-          <li>Speed optimization (90+ Lighthouse score)</li>
-          <li>Google Analytics + heatmap setup</li>
-          <li>Blog or portfolio section</li>
+          <li>Contact form + Google Maps integration</li>
+          <li>SEO setup (titles, meta, alt tags, sitemap)</li>
+          <li>Google Analytics + speed optimization</li>
           <li>Delivered in 14 days</li>
-          <li>Unlimited revisions</li>
-          <li>30 days post-launch support</li>
+          <li>Unlimited revisions until you're happy</li>
+          <li>You own 100% of the code &amp; files</li>
         </ul>
-        <a href="https://calendly.com" target="_blank" class="p-btn p-fill">Book a Call →</a>
+        <a href="https://calendly.com" target="_blank" class="p-btn p-fill">Book a Free Call →</a>
       </div>
 
-      <div class="p-card reveal d2">
-        <div class="p-tier">Premium</div>
-        <div class="p-price">$3,497</div>
-        <p class="p-desc">For businesses that want a fully custom, category-defining web presence.</p>
+      <!-- MAINTENANCE -->
+      <div class="p-card reveal d1">
+        <div class="p-tier">Monthly Maintenance</div>
+        <div class="p-price">250</div>
+        <div class="p-currency">AED / month</div>
+        <p class="p-desc">Keep your site fast, secure, and always up-to-date. Add-on after your build, cancel anytime.</p>
         <div class="p-div"></div>
         <ul class="p-feats">
-          <li>Everything in Pro</li>
-          <li>Custom 3D / WebGL visual elements</li>
-          <li>E-commerce or booking integration</li>
-          <li>Custom CMS (you edit your own content)</li>
-          <li>Multi-language support</li>
-          <li>Dedicated project manager</li>
-          <li>90 days post-launch support</li>
+          <li>Monthly content updates (text, images, prices)</li>
+          <li>Security patches &amp; plugin updates</li>
+          <li>Uptime monitoring &amp; performance checks</li>
+          <li>Backup &amp; recovery</li>
+          <li>Priority support via WhatsApp</li>
+          <li>Monthly report of site performance</li>
+          <li>Cancel anytime — no contracts</li>
         </ul>
-        <a href="https://calendly.com" target="_blank" class="p-btn p-outline">Book a Call</a>
+        <a href="https://calendly.com" target="_blank" class="p-btn p-outline">Get Started</a>
       </div>
 
     </div>
@@ -587,7 +535,7 @@ footer{
           How long does it take to build my website?
           <div class="faq-ic">+</div>
         </div>
-        <div class="faq-a"><p>Starter is delivered in 7 days, Pro in 14 days, Premium in 21 days. The clock starts once you've provided your content. We send a simple checklist on day one — no guessing, no back-and-forth.</p></div>
+        <div class="faq-a"><p>14 days from the moment you provide your content. We send a simple checklist on day one so there's no guessing — just check the boxes and we handle the rest.</p></div>
       </div>
 
       <div class="faq-item">
@@ -595,7 +543,7 @@ footer{
           What do I need to provide to get started?
           <div class="faq-ic">+</div>
         </div>
-        <div class="faq-a"><p>Your logo, brand colors, photos, and the text for each page. Don't have those? No problem — we can recommend copywriters, use high-quality stock photography, and help establish your brand basics as an add-on. We've launched sites for clients who handed us nothing but a business name.</p></div>
+        <div class="faq-a"><p>Your logo, brand colors, photos, and the text for each page. Don't have those? No problem — we can help with copywriting, use high-quality stock photography, and establish your brand basics. We've launched sites for clients who handed us nothing but a business name.</p></div>
       </div>
 
       <div class="faq-item">
@@ -603,15 +551,15 @@ footer{
           Do I own the website after you build it?
           <div class="faq-ic">+</div>
         </div>
-        <div class="faq-a"><p>100%. You get full ownership of every file, asset, and line of code. We help you set it up on your own hosting so you're never dependent on us to keep the site live. No monthly fees, no lock-in, ever.</p></div>
+        <div class="faq-a"><p>100%. Every file, asset, and line of code is yours. We help you set it up on your own hosting so you're never dependent on us to keep the site live. No monthly platform fees, no lock-in, ever.</p></div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          What if I want changes after launch?
+          What's included in the 250 AED/month maintenance?
           <div class="faq-ic">+</div>
         </div>
-        <div class="faq-a"><p>Pro and Premium packages include 30–90 days of post-launch support. After that, we offer a simple maintenance plan, or we hand you the keys. We build on platforms that are easy to self-manage — no technical skill needed.</p></div>
+        <div class="faq-a"><p>Monthly content updates, security patches, uptime monitoring, backups, priority WhatsApp support, and a monthly performance report. It's completely optional — add it after your build, and cancel anytime with no penalty.</p></div>
       </div>
 
       <div class="faq-item">
@@ -619,45 +567,9 @@ footer{
           Why is your pricing public?
           <div class="faq-ic">+</div>
         </div>
-        <div class="faq-a"><p>Transparency. These prices fit 90% of what clients need. If your project needs more, we'll tell you on the call — no pressure, no bait-and-switch. Public pricing filters out bad-fit projects before anyone wastes their time.</p></div>
+        <div class="faq-a"><p>Transparency. We believe you should know what you're paying before you pick up the phone. Public pricing filters out bad-fit projects and saves everyone's time — including yours.</p></div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="reveal">
-        <div class="avatars">
-          <div class="av-card">
-            <div class="av-img av1">A</div>
-            <div class="av-name">AHMED</div>
-            <div class="av-role">Design &amp; Strategy</div>
-          </div>
-          <div class="av-card">
-            <div class="av-img av2">M</div>
-            <div class="av-name">MOAZ</div>
-            <div class="av-role">Dev &amp; Performance</div>
-          </div>
-        </div>
-        <div class="a-stats">
-          <div class="a-stat"><div class="n">3+</div><div class="l">Years Building</div></div>
-          <div class="a-stat"><div class="n">20+</div><div class="l">Projects Shipped</div></div>
-          <div class="a-stat"><div class="n">14d</div><div class="l">Avg. Turnaround</div></div>
-          <div class="a-stat"><div class="n">5★</div><div class="l">Client Rating</div></div>
-        </div>
-      </div>
-      <div class="about-text reveal d1">
-        <div class="s-tag">About the Team</div>
-        <h2 class="s-title">Two builders.<br>One obsession.</h2>
-        <p>We started AXON STUDIO because we kept watching great businesses lose customers to competitors with worse products but better websites. That bothered us.</p>
-        <p><strong>Ahmed</strong> obsesses over design — the kind that stops someone mid-scroll and makes them think "I need to work with these people." <strong>Moaz</strong> makes sure every pixel loads in under 2 seconds and converts like it was engineered by someone who cares.</p>
-        <p>Together, we build the kind of site that becomes your best salesperson — working 24/7, never calling in sick, and never giving a bad pitch. <strong>That's the only thing we do, and we do it well.</strong></p>
-        <a href="https://calendly.com" target="_blank" class="btn-primary" style="display:inline-flex;margin-top:10px">📅 Book a Free Call</a>
-      </div>
     </div>
   </div>
 </section>
@@ -688,13 +600,13 @@ footer{
 </footer>
 
 <script>
-// ─── THREE.JS PARTICLE NETWORK ───────────────────────────────────────────────
+// ─── THREE.JS PARTICLE NETWORK ────────────────────────────────────────────────
 (function(){
   const canvas = document.getElementById('hero-canvas');
   const W = () => window.innerWidth;
   const H = () => window.innerHeight;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(W(), H());
 
@@ -708,12 +620,8 @@ footer{
 
   for(let i = 0; i < COUNT; i++){
     const p = {
-      x: (Math.random()-.5)*1100,
-      y: (Math.random()-.5)*700,
-      z: (Math.random()-.5)*300,
-      vx: (Math.random()-.5)*.28,
-      vy: (Math.random()-.5)*.22,
-      vz: (Math.random()-.5)*.12,
+      x:(Math.random()-.5)*1100, y:(Math.random()-.5)*700, z:(Math.random()-.5)*300,
+      vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.2, vz:(Math.random()-.5)*.1,
     };
     pts.push(p);
     posArr[i*3]=p.x; posArr[i*3+1]=p.y; posArr[i*3+2]=p.z;
@@ -722,37 +630,34 @@ footer{
   const pGeo = new THREE.BufferGeometry();
   const pAttr = new THREE.BufferAttribute(posArr, 3);
   pGeo.setAttribute('position', pAttr);
-  const pMat = new THREE.PointsMaterial({ color:0x00f5ff, size:2.2, transparent:true, opacity:.55, sizeAttenuation:true });
+  // Professional blue particles
+  const pMat = new THREE.PointsMaterial({ color:0x4a78e8, size:2.0, transparent:true, opacity:.5, sizeAttenuation:true });
   scene.add(new THREE.Points(pGeo, pMat));
 
-  // Floating wireframe icosahedron
+  // Floating wireframe icosahedron — muted blue
   const icoGeo = new THREE.IcosahedronGeometry(120, 1);
-  const icoMat = new THREE.MeshBasicMaterial({ color:0x00f5ff, wireframe:true, transparent:true, opacity:.04 });
+  const icoMat = new THREE.MeshBasicMaterial({ color:0x4a78e8, wireframe:true, transparent:true, opacity:.035 });
   const ico = new THREE.Mesh(icoGeo, icoMat);
   scene.add(ico);
 
-  // Second smaller sphere (purple)
+  // Second shape — indigo
   const sGeo = new THREE.IcosahedronGeometry(60, 1);
-  const sMat = new THREE.MeshBasicMaterial({ color:0x8b5cf6, wireframe:true, transparent:true, opacity:.06 });
+  const sMat = new THREE.MeshBasicMaterial({ color:0x6366f1, wireframe:true, transparent:true, opacity:.05 });
   const sph = new THREE.Mesh(sGeo, sMat);
   sph.position.set(300, -120, -80);
   scene.add(sph);
 
-  // Line segments between nearby particles
-  const lMat = new THREE.LineBasicMaterial({ color:0x00f5ff, transparent:true, opacity:.07 });
-  let lMesh = null;
-  let frameCount = 0;
+  const lMat = new THREE.LineBasicMaterial({ color:0x4a78e8, transparent:true, opacity:.06 });
+  let lMesh = null, frameCount = 0;
 
   function rebuildLines(){
     if(lMesh) scene.remove(lMesh);
     const lPos = [];
-    const THRESH = 160;
+    const T = 160;
     for(let i=0;i<COUNT;i++){
       for(let j=i+1;j<COUNT;j++){
         const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, dz=pts[i].z-pts[j].z;
-        if(dx*dx+dy*dy+dz*dz < THRESH*THRESH){
-          lPos.push(pts[i].x,pts[i].y,pts[i].z,pts[j].x,pts[j].y,pts[j].z);
-        }
+        if(dx*dx+dy*dy+dz*dz < T*T) lPos.push(pts[i].x,pts[i].y,pts[i].z,pts[j].x,pts[j].y,pts[j].z);
       }
     }
     const lg = new THREE.BufferGeometry();
@@ -762,15 +667,11 @@ footer{
   }
 
   let mx=0, my=0;
-  document.addEventListener('mousemove', e => {
-    mx = (e.clientX/W()-.5)*2;
-    my = (e.clientY/H()-.5)*2;
-  });
+  document.addEventListener('mousemove', e => { mx=(e.clientX/W()-.5)*2; my=(e.clientY/H()-.5)*2; });
 
   function tick(){
     requestAnimationFrame(tick);
     frameCount++;
-
     for(let i=0;i<COUNT;i++){
       pts[i].x+=pts[i].vx; pts[i].y+=pts[i].vy; pts[i].z+=pts[i].vz;
       if(Math.abs(pts[i].x)>550) pts[i].vx*=-1;
@@ -779,36 +680,29 @@ footer{
       posArr[i*3]=pts[i].x; posArr[i*3+1]=pts[i].y; posArr[i*3+2]=pts[i].z;
     }
     pAttr.needsUpdate = true;
-
-    if(frameCount % 3 === 0) rebuildLines();
-
-    ico.rotation.x += .0006;
-    ico.rotation.y += .001;
-    sph.rotation.x += .001;
-    sph.rotation.z += .0007;
-
-    camera.position.x += (mx*25 - camera.position.x)*.025;
-    camera.position.y += (-my*16 - camera.position.y)*.025;
+    if(frameCount%3===0) rebuildLines();
+    ico.rotation.x+=.0006; ico.rotation.y+=.001;
+    sph.rotation.x+=.001; sph.rotation.z+=.0007;
+    camera.position.x+=(mx*25-camera.position.x)*.025;
+    camera.position.y+=(-my*16-camera.position.y)*.025;
     camera.lookAt(scene.position);
-
     renderer.render(scene, camera);
   }
   tick();
 
   window.addEventListener('resize', ()=>{
-    camera.aspect = W()/H();
-    camera.updateProjectionMatrix();
-    renderer.setSize(W(), H());
+    camera.aspect=W()/H(); camera.updateProjectionMatrix(); renderer.setSize(W(),H());
   });
 })();
 
-// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+// ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(
+  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold:0.1 }
+);
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ─── FAQ ─────────────────────────────────────────────────────────────────────
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
 function toggleFaq(el){
   const item = el.parentElement;
   const wasOpen = item.classList.contains('open');
@@ -816,10 +710,10 @@ function toggleFaq(el){
   if(!wasOpen) item.classList.add('open');
 }
 
-// ─── NAV SCROLL ──────────────────────────────────────────────────────────────
+// ─── NAV SCROLL ───────────────────────────────────────────────────────────────
 window.addEventListener('scroll', ()=>{
   document.getElementById('nav').style.background =
-    window.scrollY > 60 ? 'rgba(3,7,18,.97)' : 'rgba(3,7,18,.85)';
+    window.scrollY > 60 ? 'rgba(8,9,15,.97)' : 'rgba(8,9,15,.88)';
 });
 </script>
 </body>
