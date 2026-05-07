@@ -791,91 +791,176 @@ footer{
 </footer>
 
 <script>
-// ── THREE.JS HERO BACKGROUND ─────────────────────────────────────────────────
+// ── THREE.JS HERO — FULL 3D SCENE ────────────────────────────────────────────
 (function(){
   const canvas = document.getElementById('hero-canvas');
   const W = () => window.innerWidth, H = () => window.innerHeight;
-  const renderer = new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.setSize(W(),H());
+
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(W(), H());
 
   const scene = new THREE.Scene();
-  const cam = new THREE.PerspectiveCamera(65,W()/H(),.1,1000);
-  cam.position.z = 440;
+  const cam = new THREE.PerspectiveCamera(60, W()/H(), 0.1, 2000);
+  cam.position.z = 520;
 
-  // Particles
-  const N = 100;
+  // Palette
+  const IVORY      = 0xc8b48a;
+  const IVORY_LT   = 0xe8dfc8;
+  const CHARCOAL   = 0x3a4459;
+  const NAVY_MID   = 0x1e3256;
+
+  // ① TORUS KNOT — dramatic centerpiece
+  const torusKnot = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(85, 2.8, 180, 18, 2, 3),
+    new THREE.MeshBasicMaterial({color:IVORY, wireframe:true, transparent:true, opacity:.13})
+  );
+  scene.add(torusKnot);
+
+  // ② OUTER RINGS — three independent orbits
+  const ringData = [
+    {r:220, tube:1.1, color:IVORY,    opacity:.07, rx:Math.PI/4,  ry:0},
+    {r:280, tube:0.7, color:IVORY_LT, opacity:.04, rx:Math.PI/2,  ry:Math.PI/5},
+    {r:170, tube:1.0, color:CHARCOAL, opacity:.09, rx:0.3,        ry:Math.PI/3},
+  ];
+  const rings = ringData.map(d => {
+    const m = new THREE.Mesh(
+      new THREE.TorusGeometry(d.r, d.tube, 8, 90),
+      new THREE.MeshBasicMaterial({color:d.color, transparent:true, opacity:d.opacity})
+    );
+    m.rotation.x = d.rx; m.rotation.y = d.ry;
+    scene.add(m); return m;
+  });
+
+  // ③ LARGE ICOSAHEDRON (outer cage)
+  const ico = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(145, 1),
+    new THREE.MeshBasicMaterial({color:IVORY, wireframe:true, transparent:true, opacity:.04})
+  );
+  scene.add(ico);
+
+  // ④ FLOATING OCTAHEDRA
+  const octData = [
+    {s:44,  x: 320, y:-90,  z:-110, c:IVORY,    o:.09},
+    {s:28,  x:-300, y:130,  z:-60,  c:IVORY_LT, o:.08},
+    {s:20,  x: 220, y:210,  z: 60,  c:CHARCOAL, o:.11},
+    {s:34,  x:-220, y:-200, z:-90,  c:IVORY,    o:.07},
+    {s:16,  x: 380, y: 90,  z: 30,  c:IVORY_LT, o:.1 },
+    {s:22,  x:-130, y:-280, z:-40,  c:CHARCOAL, o:.08},
+  ];
+  const octas = octData.map(d => {
+    const m = new THREE.Mesh(
+      new THREE.OctahedronGeometry(d.s, 0),
+      new THREE.MeshBasicMaterial({color:d.c, wireframe:true, transparent:true, opacity:d.o})
+    );
+    m.position.set(d.x, d.y, d.z);
+    scene.add(m); return m;
+  });
+
+  // ⑤ DNA DOUBLE HELIX (right side)
+  const strand = (offset, color) => {
+    const hPts = [];
+    for(let i=0;i<100;i++){
+      const t = i/100 * Math.PI*8;
+      hPts.push(new THREE.Vector3(Math.cos(t+offset)*55+380, i*7-350, Math.sin(t+offset)*55-80));
+    }
+    const g = new THREE.BufferGeometry().setFromPoints(hPts);
+    scene.add(new THREE.Line(g, new THREE.LineBasicMaterial({color, transparent:true, opacity:.14})));
+  };
+  strand(0,       IVORY);
+  strand(Math.PI, CHARCOAL);
+  // Cross-bars
+  for(let i=0;i<20;i++){
+    const t = (i/20)*Math.PI*8, frac=i/20;
+    const y = frac*700 - 350;
+    const p1 = new THREE.Vector3(Math.cos(t)*55+380,       y, Math.sin(t)*55-80);
+    const p2 = new THREE.Vector3(Math.cos(t+Math.PI)*55+380, y, Math.sin(t+Math.PI)*55-80);
+    const g  = new THREE.BufferGeometry().setFromPoints([p1,p2]);
+    scene.add(new THREE.Line(g, new THREE.LineBasicMaterial({color:IVORY, transparent:true, opacity:.06})));
+  }
+
+  // ⑥ PARTICLES — denser, two sizes
+  const N = 160;
   const pts = [], arr = new Float32Array(N*3);
   for(let i=0;i<N;i++){
-    const p = {
-      x:(Math.random()-.5)*1200, y:(Math.random()-.5)*800, z:(Math.random()-.5)*400,
-      vx:(Math.random()-.5)*.22, vy:(Math.random()-.5)*.18, vz:(Math.random()-.5)*.1,
+    const p={
+      x:(Math.random()-.5)*1500, y:(Math.random()-.5)*1000, z:(Math.random()-.5)*600,
+      vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.14, vz:(Math.random()-.5)*.08,
     };
     pts.push(p);
     arr[i*3]=p.x; arr[i*3+1]=p.y; arr[i*3+2]=p.z;
   }
-  const geo = new THREE.BufferGeometry();
-  const attr = new THREE.BufferAttribute(arr,3);
-  geo.setAttribute('position',attr);
-  scene.add(new THREE.Points(geo,
-    new THREE.PointsMaterial({color:0xc8b48a,size:1.8,transparent:true,opacity:.55,sizeAttenuation:true})));
+  const pGeo = new THREE.BufferGeometry();
+  const pAttr = new THREE.BufferAttribute(arr, 3);
+  pGeo.setAttribute('position', pAttr);
+  scene.add(new THREE.Points(pGeo,
+    new THREE.PointsMaterial({color:IVORY, size:1.6, transparent:true, opacity:.5, sizeAttenuation:true})));
 
-  // Wireframe shapes
-  const ico = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(110,1),
-    new THREE.MeshBasicMaterial({color:0xc8b48a,wireframe:true,transparent:true,opacity:.04}));
-  scene.add(ico);
-
-  const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(140,1.5,8,60),
-    new THREE.MeshBasicMaterial({color:0x3a4459,transparent:true,opacity:.06}));
-  ring.rotation.x = Math.PI/3;
-  scene.add(ring);
-
-  const sph2 = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(55,1),
-    new THREE.MeshBasicMaterial({color:0x3a4459,wireframe:true,transparent:true,opacity:.05}));
-  sph2.position.set(280,-100,-60);
-  scene.add(sph2);
-
-  // Lines
-  const lMat = new THREE.LineBasicMaterial({color:0xc8b48a,transparent:true,opacity:.055});
+  // ⑦ CONNECTING LINES
+  const lMat = new THREE.LineBasicMaterial({color:IVORY, transparent:true, opacity:.048});
   let lMesh=null, f=0;
-
   function buildLines(){
     if(lMesh) scene.remove(lMesh);
-    const lp=[], T=155;
+    const lp=[], T=145;
     for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,dz=pts[i].z-pts[j].z;
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, dz=pts[i].z-pts[j].z;
       if(dx*dx+dy*dy+dz*dz<T*T) lp.push(pts[i].x,pts[i].y,pts[i].z,pts[j].x,pts[j].y,pts[j].z);
     }
     const lg=new THREE.BufferGeometry();
-    lg.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));
+    lg.setAttribute('position', new THREE.Float32BufferAttribute(lp,3));
     lMesh=new THREE.LineSegments(lg,lMat);
     scene.add(lMesh);
   }
 
-  let mx=0,my=0;
-  addEventListener('mousemove',e=>{mx=(e.clientX/W()-.5)*2;my=(e.clientY/H()-.5)*2;});
+  // ⑧ GRID FLOOR
+  const grid = new THREE.GridHelper(1400, 28, CHARCOAL, CHARCOAL);
+  grid.position.y = -340;
+  grid.material.transparent=true; grid.material.opacity=.045;
+  scene.add(grid);
+
+  // Mouse parallax with smoothing
+  let mx=0, my=0, tmx=0, tmy=0;
+  addEventListener('mousemove', e=>{tmx=(e.clientX/W()-.5)*2; tmy=(e.clientY/H()-.5)*2;});
 
   (function tick(){
     requestAnimationFrame(tick); f++;
+    mx+=(tmx-mx)*.035; my+=(tmy-my)*.035;
+
+    // Move particles
     for(let i=0;i<N;i++){
       pts[i].x+=pts[i].vx; pts[i].y+=pts[i].vy; pts[i].z+=pts[i].vz;
-      if(Math.abs(pts[i].x)>600) pts[i].vx*=-1;
-      if(Math.abs(pts[i].y)>400) pts[i].vy*=-1;
-      if(Math.abs(pts[i].z)>200) pts[i].vz*=-1;
+      if(Math.abs(pts[i].x)>750) pts[i].vx*=-1;
+      if(Math.abs(pts[i].y)>500) pts[i].vy*=-1;
+      if(Math.abs(pts[i].z)>300) pts[i].vz*=-1;
       arr[i*3]=pts[i].x; arr[i*3+1]=pts[i].y; arr[i*3+2]=pts[i].z;
     }
-    attr.needsUpdate=true;
+    pAttr.needsUpdate=true;
     if(f%3===0) buildLines();
-    ico.rotation.x+=.0005; ico.rotation.y+=.0009;
-    ring.rotation.z+=.0008;
-    sph2.rotation.x+=.001; sph2.rotation.z+=.0006;
-    cam.position.x+=(mx*22-cam.position.x)*.022;
-    cam.position.y+=(-my*14-cam.position.y)*.022;
+
+    // Rotate central shapes
+    torusKnot.rotation.x += .0028; torusKnot.rotation.y += .0045;
+    ico.rotation.x += .0003;       ico.rotation.y += .0006;
+
+    // Rings
+    rings[0].rotation.z += .0005;
+    rings[1].rotation.x += .0003; rings[1].rotation.z -= .0004;
+    rings[2].rotation.y += .0006; rings[2].rotation.x -= .0002;
+
+    // Float octahedra
+    const t = f*.007;
+    octas.forEach((o,i)=>{
+      o.rotation.x+=.0025+i*.0008; o.rotation.y+=.002+i*.001;
+      o.position.y += Math.sin(t+i*1.4)*.18;
+    });
+
+    // Grid subtle movement
+    grid.position.y = -340 + Math.sin(t*.3)*8;
+
+    // Camera
+    cam.position.x+=(mx*32-cam.position.x)*.025;
+    cam.position.y+=(-my*20-cam.position.y)*.025;
     cam.lookAt(scene.position);
-    renderer.render(scene,cam);
+    renderer.render(scene, cam);
   })();
 
   addEventListener('resize',()=>{
@@ -953,6 +1038,22 @@ gsap.to('.hero-glow-2', {
 window.addEventListener('scroll', ()=>{
   document.getElementById('nav').style.background =
     scrollY > 60 ? 'rgba(11,21,38,.97)' : 'rgba(11,21,38,.8)';
+});
+
+// ── 3D CARD TILT ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.svc-item, .case-card, .p-card').forEach(card => {
+  card.style.willChange = 'transform';
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - .5;
+    const y = (e.clientY - r.top)  / r.height - .5;
+    card.style.transform = `perspective(900px) rotateY(${x*10}deg) rotateX(${-y*8}deg) translateZ(8px) scale(1.02)`;
+    card.style.transition = 'transform .1s ease';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0) scale(1)';
+    card.style.transition = 'transform .5s cubic-bezier(.23,1,.32,1)';
+  });
 });
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
