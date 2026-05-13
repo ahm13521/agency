@@ -3,1066 +3,1780 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXON STUDIO — Premium Web Design</title>
+<title>Japan — Land of the Rising Sun</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0b1526;
-  --bg2:#0f1d38;
-  --sky:#c8b48a;
-  --violet:#e8e0d0;
-  --emerald:#7a9e82;
-  --white:#ffffff;
-  --light:#d0c9bc;
-  --muted:#6b7a96;
-  --card:rgba(15,29,56,0.55);
-  --border:rgba(200,180,138,0.13);
-  --gsky:0 0 40px rgba(200,180,138,0.2);
-  --gviolet:0 0 40px rgba(232,224,208,0.15);
+  --ink:#0d0d0d;
+  --ink2:#1a1a1a;
+  --cream:#f5f0e8;
+  --cream2:#faf7f2;
+  --red:#bc002d;
+  --red2:#e8003a;
+  --sakura:#ffb7c5;
+  --sakura2:#ffd6de;
+  --gold:#c9a84c;
+  --muted:#6b6b6b;
+  --border:rgba(0,0,0,.1);
+  --borderlight:rgba(0,0,0,.06);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;
-  -webkit-font-smoothing:antialiased}
-::selection{background:rgba(200,180,138,.3);color:#fff}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--cream2);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(188,0,45,.15);color:var(--ink)}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--sky),var(--sky));border-radius:2px}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
 
-/* ── NAV ────────────────────────────────────────── */
+/* ── NAV ─────────────────────────────────── */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:20px 64px;display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(20px) saturate(180%);
-  background:rgba(11,21,38,.8);
-  border-bottom:1px solid var(--border);
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 60px;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s, box-shadow .4s;
 }
-.logo{
-  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;letter-spacing:3px;
-  background:linear-gradient(90deg,var(--sky),var(--violet));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+nav.scrolled{
+  background:rgba(245,240,232,.95);
+  backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 var(--border);
 }
-.nav-links{display:flex;gap:40px;list-style:none}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;letter-spacing:4px;
+  color:var(--ink);text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo-kanji{
+  font-family:'Noto Serif JP',serif;
+  font-size:16px;color:var(--red);letter-spacing:0;
+}
+.nav-links{display:flex;gap:36px;list-style:none}
 .nav-links a{
-  color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;
-  letter-spacing:.5px;transition:color .2s;position:relative;
+  font-size:12px;font-weight:500;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:color .2s;
 }
-.nav-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
-  background:var(--sky);transform:scaleX(0);transition:transform .25s;
+.nav-links a:hover{color:var(--ink)}
+.nav-circle{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--red);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:transform .25s,background .25s;
+  border:none;
 }
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover::after{transform:scaleX(1)}
-.nav-cta{
-  padding:10px 24px;background:linear-gradient(135deg,var(--sky),var(--violet));
-  color:#fff;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
-  letter-spacing:.5px;border:none;border-radius:6px;cursor:pointer;
-  text-decoration:none;transition:all .25s;position:relative;overflow:hidden;
-}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:var(--gsky)}
+.nav-circle:hover{transform:scale(1.1);background:var(--red2)}
+.nav-circle svg{width:16px;height:16px;fill:white}
 
-/* ── HERO ───────────────────────────────────────── */
+/* ── HERO ────────────────────────────────── */
 #hero{
   position:relative;min-height:100vh;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+  background:var(--ink);
 }
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.hero-noise{
-  position:absolute;inset:0;z-index:1;opacity:.03;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px;
-}
-.hero-glow-1{
-  position:absolute;top:-200px;left:-200px;width:600px;height:600px;z-index:1;
-  background:radial-gradient(circle,rgba(200,180,138,.15) 0%,transparent 65%);
+#sakura-canvas{
+  position:absolute;inset:0;width:100%;height:100%;z-index:2;
   pointer-events:none;
 }
-.hero-glow-2{
-  position:absolute;bottom:-200px;right:-200px;width:600px;height:600px;z-index:1;
-  background:radial-gradient(circle,rgba(58,68,89,.12) 0%,transparent 65%);
-  pointer-events:none;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(160deg,#0d0d0d 0%,#1a0a0f 40%,#2d0a14 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(188,0,45,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(188,0,45,.04) 1px, transparent 1px);
+  background-size:80px 80px;
+}
+.hero-vignette{
+  position:absolute;inset:0;z-index:3;
+  background:radial-gradient(ellipse at center bottom, transparent 20%, rgba(13,13,13,.7) 100%);
 }
 .hero-inner{
-  position:relative;z-index:2;text-align:center;
-  max-width:1000px;padding:0 40px;
+  position:relative;z-index:4;
+  padding:0 80px 100px;
+  width:100%;
 }
-.hero-pill{
-  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;
-  background:rgba(200,180,138,.1);border:1px solid rgba(200,180,138,.25);
-  border-radius:100px;font-size:11px;font-weight:600;color:var(--sky);
-  letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;
+.hero-eyebrow{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:32px;
 }
-.pill-dot{
-  width:6px;height:6px;background:var(--sky);border-radius:50%;
-  animation:pulse-dot 2s ease-in-out infinite;
+.hero-eyebrow-line{width:40px;height:1px;background:var(--red)}
+.hero-eyebrow-text{
+  font-size:11px;font-weight:600;letter-spacing:4px;
+  text-transform:uppercase;color:var(--red);
 }
-@keyframes pulse-dot{
-  0%,100%{box-shadow:0 0 0 0 rgba(200,180,138,.6)}
-  50%{box-shadow:0 0 0 6px rgba(200,180,138,0)}
+.hero-kanji-bg{
+  position:absolute;right:60px;bottom:60px;z-index:0;
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(200px,22vw,320px);
+  font-weight:700;
+  color:rgba(188,0,45,.06);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
 }
 .hero-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(44px,7.5vw,88px);
-  font-weight:800;line-height:1.04;
-  letter-spacing:-2px;margin-bottom:28px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(64px,10vw,140px);
+  font-weight:300;line-height:.95;
+  letter-spacing:-2px;color:#fff;
+  position:relative;z-index:1;
+  max-width:900px;
 }
-.hero-title .line-1{
-  display:block;color:var(--white);
-}
-.hero-title .line-2{
-  display:block;
-  background:linear-gradient(90deg,var(--sky) 0%,var(--violet) 55%,var(--sky) 100%);
-  background-size:200% auto;
+.hero-title em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--sakura),var(--red),var(--gold));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  animation:shimmer 4s linear infinite;
 }
-@keyframes shimmer{to{background-position:200% center}}
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-top:48px;position:relative;z-index:1;
+  flex-wrap:wrap;gap:24px;
+}
 .hero-sub{
-  font-size:18px;color:var(--light);line-height:1.75;
-  max-width:600px;margin:0 auto 36px;font-weight:400;opacity:.8;
+  color:rgba(255,255,255,.5);
+  font-size:16px;line-height:1.8;
+  max-width:480px;font-weight:300;
 }
-.hero-price-badge{
-  display:inline-flex;align-items:center;gap:12px;
-  padding:12px 24px;background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);border-radius:8px;
-  margin-bottom:40px;
+.hero-scroll{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:rgba(255,255,255,.35);font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;
 }
-.price-num{
-  font-family:'Syne',sans-serif;font-size:24px;font-weight:800;
-  background:linear-gradient(90deg,var(--sky),var(--violet));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+.scroll-line{
+  width:1px;height:60px;
+  background:linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+  animation:scroll-pulse 2.5s ease-in-out infinite;
 }
-.price-meta{color:var(--muted);font-size:13px;font-weight:500;text-align:left;line-height:1.4}
-.price-divider{width:1px;height:36px;background:var(--border)}
-.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn-main{
-  padding:16px 40px;
-  background:linear-gradient(135deg,var(--sky),var(--violet));
-  color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-  letter-spacing:.3px;border:none;border-radius:8px;cursor:pointer;
-  text-decoration:none;display:inline-flex;align-items:center;gap:10px;
-  transition:all .25s;position:relative;overflow:hidden;
+@keyframes scroll-pulse{
+  0%,100%{opacity:.3;transform:scaleY(1)}
+  50%{opacity:1;transform:scaleY(1.2)}
 }
-.btn-main::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
-  opacity:0;transition:opacity .25s;
+.hero-stats-row{
+  display:flex;gap:40px;
 }
-.btn-main:hover::before{opacity:1}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 24px 48px rgba(200,180,138,.3)}
-.btn-line{
-  padding:16px 40px;background:transparent;color:var(--white);
-  font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-  border:1px solid rgba(255,255,255,.15);border-radius:8px;
-  cursor:pointer;text-decoration:none;
-  display:inline-flex;align-items:center;gap:10px;transition:all .25s;
+.hero-stat .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:600;color:#fff;line-height:1;
 }
-.btn-line:hover{border-color:var(--sky);color:var(--sky);transform:translateY(-2px)}
+.hero-stat .lbl{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-top:4px;
+}
 
-/* ── STATS BAR ──────────────────────────────────── */
-#stats{
-  padding:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:linear-gradient(90deg,rgba(200,180,138,.05),rgba(58,68,89,.05));
+/* ── INTRO BANNER ────────────────────────── */
+#intro-band{
+  background:var(--red);
+  padding:18px 60px;
+  display:flex;align-items:center;gap:0;
+  overflow:hidden;
+  white-space:nowrap;
 }
-.stats-inner{
-  max-width:1000px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);
+.band-track{
+  display:flex;gap:0;
+  animation:marquee 22s linear infinite;
 }
-.stat-item{
-  padding:48px 32px;text-align:center;
-  border-right:1px solid var(--border);
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.band-item{
+  font-size:12px;font-weight:600;letter-spacing:3px;
+  text-transform:uppercase;color:#fff;
+  padding:0 40px;opacity:.9;
 }
-.stat-item:last-child{border-right:none}
-.stat-val{
-  font-family:'Syne',sans-serif;font-size:42px;font-weight:800;line-height:1;
-  background:linear-gradient(135deg,var(--sky),var(--violet));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+.band-dot{
+  color:rgba(255,255,255,.4);padding:0;
+}
+
+/* ── SECTION COMMONS ─────────────────────── */
+section{padding:140px 80px}
+.container{max-width:1280px;margin:0 auto}
+.section-tag{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:10px;font-weight:700;letter-spacing:4px;
+  text-transform:uppercase;color:var(--red);
+  margin-bottom:20px;
+}
+.section-tag::before{
+  content:'';width:24px;height:1px;background:var(--red);
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,64px);
+  font-weight:300;line-height:1.1;
+  letter-spacing:-1px;color:var(--ink);
+}
+.section-title em{font-style:italic;color:var(--red)}
+.section-sub{
+  color:var(--muted);font-size:16px;
+  line-height:1.85;max-width:500px;
+  margin-top:16px;font-weight:300;
+}
+
+/* ── DESTINATIONS ────────────────────────── */
+#destinations{
+  background:var(--ink);
+  padding:140px 0;
+}
+#destinations .section-tag{color:var(--sakura)}
+#destinations .section-tag::before{background:var(--sakura)}
+#destinations .section-title{color:#fff}
+#destinations .section-sub{color:rgba(255,255,255,.45)}
+.dest-head{padding:0 80px;margin-bottom:80px}
+.dest-scroll{
+  display:flex;gap:2px;
+  overflow:visible;
+}
+.dest-card{
+  flex:0 0 auto;
+  width:340px;height:520px;
+  position:relative;overflow:hidden;
+  cursor:pointer;
+}
+.dest-card:first-child{margin-left:80px}
+.dest-card:last-child{margin-right:80px}
+.dest-img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.23,1,.32,1);
+}
+.dest-card:hover .dest-img{transform:scale(1.06)}
+.dest-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(13,13,13,.9) 0%, rgba(13,13,13,.2) 50%, transparent 100%);
+}
+.dest-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:32px;
+}
+.dest-num{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--sakura);
   margin-bottom:8px;
 }
-.stat-lbl{color:var(--muted);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
-
-/* ── SECTIONS ───────────────────────────────────── */
-section{padding:120px 64px}
-.container{max-width:1180px;margin:0 auto}
-.tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:700;letter-spacing:3px;
-  text-transform:uppercase;color:var(--sky);margin-bottom:16px;
+.dest-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:400;color:#fff;
+  letter-spacing:1px;margin-bottom:4px;
 }
-.tag::before{content:'';width:20px;height:1px;background:var(--sky)}
-.sec-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(30px,4vw,48px);font-weight:800;
-  line-height:1.15;margin-bottom:16px;letter-spacing:-1px;
+.dest-kanji{
+  font-family:'Noto Serif JP',serif;
+  font-size:14px;color:rgba(255,255,255,.35);
+  margin-bottom:12px;
 }
-.sec-sub{color:var(--light);font-size:16px;line-height:1.8;max-width:520px;opacity:.7}
-.sec-head{margin-bottom:72px}
-
-/* ── SERVICES ───────────────────────────────────── */
-#services{background:var(--bg2)}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.svc-item{
-  padding:52px 44px;background:var(--bg2);transition:background .3s;
-  position:relative;overflow:hidden;
+.dest-desc{
+  font-size:13px;color:rgba(255,255,255,.55);
+  line-height:1.7;
+  max-height:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.23,1,.32,1);
 }
-.svc-item::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(200,180,138,.07),rgba(58,68,89,.04));
-  opacity:0;transition:opacity .4s;
+.dest-card:hover .dest-desc{max-height:80px}
+.dest-tag-list{
+  display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;
 }
-.svc-item:hover::before{opacity:1}
-.svc-item:hover{background:rgba(200,180,138,.03)}
-.svc-num{
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
-  color:var(--sky);letter-spacing:3px;margin-bottom:24px;opacity:.6;
-}
-.svc-item h3{
-  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;
-  margin-bottom:14px;letter-spacing:-.5px;
-}
-.svc-item p{color:var(--light);font-size:14px;line-height:1.75;opacity:.65}
-.svc-arrow{
-  display:inline-flex;align-items:center;gap:6px;margin-top:24px;
-  font-size:13px;font-weight:600;color:var(--sky);opacity:0;
-  transform:translateX(-8px);transition:all .3s;
-}
-.svc-item:hover .svc-arrow{opacity:1;transform:translateX(0)}
-
-/* ── CASE STUDIES ───────────────────────────────── */
-#work{background:var(--bg)}
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.case-card{
-  border-radius:16px;overflow:hidden;
-  border:1px solid var(--border);
-  transition:transform .4s cubic-bezier(.23,1,.32,1),
-             box-shadow .4s cubic-bezier(.23,1,.32,1),
-             border-color .3s;
-}
-.case-card:hover{
-  transform:translateY(-12px) scale(1.01);
-  border-color:rgba(200,180,138,.3);
-  box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 60px rgba(200,180,138,.1);
-}
-.c-visual{height:220px;position:relative;overflow:hidden}
-.cv1{background:linear-gradient(135deg,#0d1117,#1a0a1a 60%,#0d0525)}
-.cv2{background:linear-gradient(135deg,#041020,#061840,#041020)}
-.cv3{background:linear-gradient(135deg,#050a10,#0a1525,#050a10)}
-.browser-chrome{
-  position:absolute;top:16px;left:16px;right:16px;bottom:-16px;
-  border-radius:8px 8px 0 0;overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.03);
-}
-.browser-bar{
-  height:28px;background:rgba(0,0,0,.4);
-  display:flex;align-items:center;gap:6px;padding:0 12px;
-}
-.b-dot{width:8px;height:8px;border-radius:50%}
-.b-dot:nth-child(1){background:#ff5f57}
-.b-dot:nth-child(2){background:#febc2e}
-.b-dot:nth-child(3){background:#28c840}
-.browser-body{padding:12px}
-.b-banner{
-  height:52px;border-radius:5px;margin-bottom:10px;
-  display:flex;align-items:center;padding:0 14px;
-}
-.cv1 .b-banner{background:linear-gradient(90deg,rgba(58,68,89,.6),rgba(99,102,241,.4))}
-.cv2 .b-banner{background:linear-gradient(90deg,rgba(200,180,138,.6),rgba(59,130,246,.4))}
-.cv3 .b-banner{background:linear-gradient(90deg,rgba(16,185,129,.5),rgba(5,150,105,.4))}
-.b-line{height:6px;border-radius:3px;background:rgba(255,255,255,.08);margin-bottom:6px}
-.b-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
-.b-col{height:40px;border-radius:4px;background:rgba(255,255,255,.04)}
-.sbadge{
-  position:absolute;top:12px;right:12px;padding:4px 10px;
-  background:rgba(11,21,38,.9);border:1px solid rgba(255,255,255,.15);
-  border-radius:100px;font-size:9px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);
-}
-.c-body{padding:24px;background:rgba(7,11,22,.98)}
-.c-industry{
-  font-size:10px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--sky);margin-bottom:8px;
-}
-.c-body h3{
-  font-family:'Syne',sans-serif;font-size:18px;font-weight:700;
-  margin-bottom:8px;letter-spacing:-.3px;
-}
-.c-body p{color:var(--light);font-size:13px;line-height:1.65;margin-bottom:16px;opacity:.65}
-.tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag-chip{
-  padding:3px 10px;background:rgba(200,180,138,.08);
-  border:1px solid rgba(200,180,138,.15);
-  border-radius:100px;font-size:10px;color:var(--sky);font-weight:500;
+.dest-tag-chip{
+  padding:4px 10px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);border-radius:100px;
+  font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.5px;
 }
 
-/* ── PRICING ────────────────────────────────────── */
-#pricing{background:var(--bg2)}
-.pricing-wrap{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:24px;max-width:860px;margin:0 auto;
-}
-.p-card{
-  padding:48px 40px;background:var(--card);
-  border:1px solid var(--border);border-radius:20px;
-  transition:all .35s cubic-bezier(.23,1,.32,1);position:relative;
-}
-.p-card.featured{
-  background:linear-gradient(160deg,rgba(200,180,138,.09) 0%,rgba(58,68,89,.07) 100%);
-  border-color:rgba(200,180,138,.3);
-}
-.p-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 32px 64px rgba(0,0,0,.4);
-}
-.p-card.featured:hover{
-  box-shadow:0 32px 64px rgba(0,0,0,.4),0 0 80px rgba(200,180,138,.12);
-}
-.feat-tag{
-  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-  padding:5px 20px;background:linear-gradient(90deg,var(--sky),var(--violet));
-  border-radius:100px;font-size:10px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:#fff;white-space:nowrap;
-}
-.p-label{
-  font-size:11px;font-weight:700;letter-spacing:3px;
-  text-transform:uppercase;color:var(--muted);margin-bottom:20px;
-}
-.p-amount{
-  font-family:'Syne',sans-serif;font-size:56px;font-weight:800;
-  line-height:1;margin-bottom:4px;
-}
-.p-card.featured .p-amount{
-  background:linear-gradient(90deg,var(--sky),var(--violet));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.p-unit{font-size:13px;color:var(--muted);letter-spacing:1.5px;margin-bottom:20px;font-weight:500}
-.p-desc{color:var(--light);font-size:14px;line-height:1.7;margin-bottom:32px;opacity:.7}
-.p-sep{height:1px;background:var(--border);margin-bottom:32px}
-.p-list{list-style:none;margin-bottom:40px}
-.p-list li{
-  display:flex;align-items:flex-start;gap:12px;
-  margin-bottom:14px;font-size:13px;color:var(--light);
-  line-height:1.55;opacity:.75;
-}
-.p-list li::before{
-  content:'✓';color:var(--emerald);font-size:13px;
-  font-weight:700;flex-shrink:0;margin-top:0;
-}
-.p-action{
-  width:100%;padding:14px 24px;border-radius:10px;
-  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
-  letter-spacing:.3px;cursor:pointer;transition:all .25s;
-  text-align:center;text-decoration:none;display:block;
-}
-.p-action-solid{
-  background:linear-gradient(135deg,var(--sky),var(--violet));
-  border:none;color:#fff;
-}
-.p-action-solid:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(200,180,138,.3)}
-.p-action-ghost{
-  background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--white);
-}
-.p-action-ghost:hover{border-color:var(--sky);color:var(--sky)}
+/* Destination visual placeholders (gradient art) */
+.d1{background:linear-gradient(160deg,#0d1020 0%,#1a2540 40%,#2d1a3a 100%)}
+.d2{background:linear-gradient(160deg,#1a0d10 0%,#3d1520 40%,#1a0d0a 100%)}
+.d3{background:linear-gradient(160deg,#0a1a10 0%,#122a20 40%,#0d2215 100%)}
+.d4{background:linear-gradient(160deg,#1a1008 0%,#3d2010 40%,#1a1205 100%)}
+.d5{background:linear-gradient(160deg,#080d1a 0%,#101a35 40%,#0d1228 100%)}
 
-/* ── FAQ ────────────────────────────────────────── */
-#faq{background:var(--bg)}
-.faq-list{max-width:720px}
-.faq-item{
-  border:1px solid var(--border);border-radius:12px;
-  margin-bottom:10px;overflow:hidden;transition:border-color .3s;
-}
-.faq-item.open{border-color:rgba(200,180,138,.3)}
-.faq-q{
-  padding:22px 28px;display:flex;justify-content:space-between;
-  align-items:center;cursor:pointer;font-weight:600;font-size:15px;
-  transition:color .2s;
-}
-.faq-q:hover,.faq-item.open .faq-q{color:var(--sky)}
-.faq-ico{
-  width:28px;height:28px;border:1px solid var(--border);border-radius:50%;
+.dest-art{
+  width:100%;height:100%;
+  position:relative;
   display:flex;align-items:center;justify-content:center;
-  font-size:18px;transition:all .3s;color:var(--muted);flex-shrink:0;
 }
-.faq-item.open .faq-ico{
-  border-color:var(--sky);color:var(--sky);transform:rotate(45deg);
+/* Tokyo - city silhouette */
+.dest-art-1::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:55%;
+  background:linear-gradient(180deg,transparent,rgba(20,20,40,.9));
 }
-.faq-ans{
-  max-height:0;overflow:hidden;padding:0 28px;
-  transition:max-height .4s cubic-bezier(.23,1,.32,1),padding .3s;
+.dest-art-1::after{
+  content:'東京';
+  font-family:'Noto Serif JP',serif;
+  font-size:100px;font-weight:700;
+  color:rgba(100,120,200,.12);
+  position:absolute;
+  letter-spacing:-4px;
 }
-.faq-item.open .faq-ans{max-height:280px;padding:0 28px 24px}
-.faq-ans p{color:var(--light);font-size:14px;line-height:1.9;opacity:.7}
+/* Kyoto */
+.dest-art-2::after{
+  content:'京都';
+  font-family:'Noto Serif JP',serif;
+  font-size:100px;font-weight:700;
+  color:rgba(200,80,100,.1);
+  position:absolute;
+}
+/* Osaka */
+.dest-art-3::after{
+  content:'大阪';
+  font-family:'Noto Serif JP',serif;
+  font-size:100px;font-weight:700;
+  color:rgba(80,160,100,.1);
+  position:absolute;
+}
+/* Hokkaido */
+.dest-art-4::after{
+  content:'北海道';
+  font-family:'Noto Serif JP',serif;
+  font-size:80px;font-weight:700;
+  color:rgba(200,150,80,.1);
+  position:absolute;
+}
+/* Hiroshima */
+.dest-art-5::after{
+  content:'広島';
+  font-family:'Noto Serif JP',serif;
+  font-size:100px;font-weight:700;
+  color:rgba(60,100,160,.1);
+  position:absolute;
+}
 
-/* ── CTA ────────────────────────────────────────── */
-#cta{
-  background:var(--bg);text-align:center;padding:160px 64px;
+/* SVG skyline art inside cards */
+.skyline-svg{
+  position:absolute;bottom:0;left:0;right:0;
+  pointer-events:none;
+}
+
+/* ── CULTURE GRID ─────────────────────────── */
+#culture{background:var(--cream2)}
+.culture-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto;
+  gap:2px;margin-top:80px;
+}
+.culture-cell{
+  position:relative;overflow:hidden;
+  background:var(--ink);
+  cursor:pointer;
+}
+.culture-cell.big{grid-row:span 2}
+.culture-cell-inner{
+  padding:52px 48px;
+  height:100%;min-height:300px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;z-index:2;
+  transition:background .3s;
+}
+.culture-cell:hover .culture-cell-inner{background:rgba(188,0,45,.08)}
+.culture-kanji{
+  position:absolute;top:24px;right:28px;
+  font-family:'Noto Serif JP',serif;
+  font-size:72px;font-weight:700;
+  color:rgba(255,255,255,.05);
+  line-height:1;
+  transition:color .4s,font-size .4s;
+  z-index:1;
+}
+.culture-cell:hover .culture-kanji{color:rgba(188,0,45,.12);font-size:80px}
+.culture-num{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--sakura);margin-bottom:12px;
+}
+.culture-cell h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(24px,2.5vw,36px);font-weight:400;
+  color:#fff;letter-spacing:-.5px;margin-bottom:10px;
+}
+.culture-cell p{
+  font-size:13px;color:rgba(255,255,255,.45);
+  line-height:1.8;max-width:400px;font-weight:300;
+}
+.culture-icon{
+  width:44px;height:44px;margin-bottom:20px;
+  opacity:.7;
+}
+
+/* gradient backgrounds for culture cells */
+.cc1{background:linear-gradient(145deg,#1a0d10,#3a1825)}
+.cc2{background:linear-gradient(145deg,#0d1520,#1a2d40)}
+.cc3{background:linear-gradient(145deg,#0d1a0d,#1a3020)}
+.cc4{background:linear-gradient(145deg,#1a1508,#2d2010)}
+
+/* ── SEASONS ──────────────────────────────── */
+#seasons{
+  background:var(--ink2);
+  padding:140px 80px;
+}
+#seasons .section-title{color:#fff}
+#seasons .section-sub{color:rgba(255,255,255,.4)}
+.seasons-head{margin-bottom:80px}
+.seasons-tabs{
+  display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:60px;
+}
+.s-tab{
+  padding:16px 32px;
+  font-size:12px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+  cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-1px;transition:all .25s;
+  background:none;border-top:none;border-left:none;border-right:none;
+}
+.s-tab.active{
+  color:#fff;
+  border-bottom-color:var(--red);
+}
+.s-tab:hover:not(.active){color:rgba(255,255,255,.6)}
+.seasons-content{display:none}
+.seasons-content.active{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.season-visual{
+  aspect-ratio:4/3;border-radius:4px;overflow:hidden;
+  position:relative;
+}
+.sv-spring{background:linear-gradient(145deg,#1a0d14,#3d1a2d,#1f0d18)}
+.sv-summer{background:linear-gradient(145deg,#0a1a10,#0d2d1a,#0a1510)}
+.sv-autumn{background:linear-gradient(145deg,#1a0d05,#3d1a05,#2d1005)}
+.sv-winter{background:linear-gradient(145deg,#0d1520,#1a2535,#0a1220)}
+.season-visual-art{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.season-visual-kanji{
+  font-family:'Noto Serif JP',serif;
+  font-size:180px;font-weight:700;
+  opacity:.07;
+  position:absolute;
+}
+.season-orb{
+  width:180px;height:180px;border-radius:50%;
+  position:absolute;
+  filter:blur(40px);opacity:.35;
+}
+.spring-orb{background:var(--sakura)}
+.summer-orb{background:#4ade80}
+.autumn-orb{background:#f97316}
+.winter-orb{background:#93c5fd}
+.season-info h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;color:#fff;
+  letter-spacing:-1px;margin-bottom:8px;
+}
+.season-info .s-jp{
+  font-family:'Noto Serif JP',serif;
+  font-size:20px;color:var(--red);
+  margin-bottom:24px;letter-spacing:4px;
+}
+.season-info p{
+  font-size:15px;color:rgba(255,255,255,.5);
+  line-height:1.9;margin-bottom:32px;font-weight:300;
+}
+.season-highlights{list-style:none;display:flex;flex-direction:column;gap:12px}
+.season-highlights li{
+  display:flex;align-items:center;gap:14px;
+  font-size:13px;color:rgba(255,255,255,.55);
+}
+.sh-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+}
+.spring-dot{background:var(--sakura)}
+.summer-dot{background:#4ade80}
+.autumn-dot{background:#f97316}
+.winter-dot{background:#93c5fd}
+
+/* ── FOOD ─────────────────────────────────── */
+#food{background:var(--cream2)}
+.food-intro{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:end;margin-bottom:80px;
+}
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.food-card{
+  background:var(--ink);
+  border-radius:8px;overflow:hidden;
+  transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s;
+}
+.food-card:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 32px 64px rgba(0,0,0,.25);
+}
+.food-visual{
+  height:200px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.fv1{background:linear-gradient(145deg,#1a0d10,#3d1520)}
+.fv2{background:linear-gradient(145deg,#0d1020,#1a2040)}
+.fv3{background:linear-gradient(145deg,#1a1005,#3d2510)}
+.fv4{background:linear-gradient(145deg,#0d1a0d,#1a3520)}
+.fv5{background:linear-gradient(145deg,#1a0d18,#2d1535)}
+.fv6{background:linear-gradient(145deg,#1a1208,#302010)}
+.food-kanji-art{
+  font-family:'Noto Serif JP',serif;
+  font-size:90px;font-weight:700;
+  color:rgba(255,255,255,.06);
+  position:absolute;
+}
+.food-emoji{font-size:56px;position:relative;z-index:1}
+.food-body{padding:24px}
+.food-body h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:#fff;
+  margin-bottom:6px;
+}
+.food-body .food-jp{
+  font-family:'Noto Serif JP',serif;
+  font-size:12px;color:var(--red);
+  margin-bottom:10px;letter-spacing:2px;
+}
+.food-body p{
+  font-size:12px;color:rgba(255,255,255,.4);
+  line-height:1.75;font-weight:300;
+}
+
+/* ── PHILOSOPHY ───────────────────────────── */
+#philosophy{
+  background:var(--red);
+  padding:120px 80px;
+  text-align:center;
+}
+.phil-kanji{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(80px,12vw,160px);
+  font-weight:700;
+  color:rgba(255,255,255,.08);
+  line-height:1;
+  margin-bottom:-40px;
+}
+.phil-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,64px);
+  font-weight:300;color:#fff;
+  line-height:1.15;letter-spacing:-1px;
+  position:relative;z-index:1;
+  max-width:800px;margin:0 auto 28px;
+}
+.phil-title em{font-style:italic;color:rgba(255,255,255,.6)}
+.phil-sub{
+  font-size:16px;color:rgba(255,255,255,.6);
+  line-height:1.9;max-width:520px;
+  margin:0 auto;font-weight:300;
+}
+.phil-pills{
+  display:flex;gap:12px;justify-content:center;
+  flex-wrap:wrap;margin-top:48px;
+}
+.phil-pill{
+  padding:10px 24px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:100px;
+  font-size:12px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:#fff;
+}
+
+/* ── TRAVEL TIPS ──────────────────────────── */
+#tips{background:var(--cream2);padding:140px 80px}
+.tips-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--border);
+  margin-top:80px;
+  border:1px solid var(--border);
+}
+.tip-item{
+  padding:48px 36px;
+  background:var(--cream2);
+  transition:background .3s;
   position:relative;overflow:hidden;
 }
-.cta-orb-1{
-  position:absolute;top:-150px;left:50%;transform:translateX(-60%);
-  width:500px;height:500px;pointer-events:none;
-  background:radial-gradient(circle,rgba(200,180,138,.1) 0%,transparent 65%);
+.tip-item:hover{background:var(--cream)}
+.tip-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;color:var(--red);
+  opacity:.2;line-height:1;margin-bottom:20px;
 }
-.cta-orb-2{
-  position:absolute;bottom:-150px;left:50%;transform:translateX(-40%);
-  width:400px;height:400px;pointer-events:none;
-  background:radial-gradient(circle,rgba(58,68,89,.08) 0%,transparent 65%);
+.tip-item h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;
+  color:var(--ink);margin-bottom:10px;
+}
+.tip-item p{
+  font-size:13px;color:var(--muted);line-height:1.8;font-weight:300;
+}
+.tip-icon{font-size:28px;margin-bottom:16px;display:block}
+
+/* ── GALLERY STRIP ────────────────────────── */
+#gallery{
+  background:var(--ink);
+  padding:0;overflow:hidden;
+}
+.gallery-track{
+  display:flex;gap:2px;
+  animation:gallery-scroll 30s linear infinite;
+}
+.gallery-track:hover{animation-play-state:paused}
+@keyframes gallery-scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(calc(-50%))}
+}
+.gallery-item{
+  flex:0 0 auto;
+  width:280px;height:380px;
+  position:relative;overflow:hidden;
+  cursor:pointer;
+}
+.gallery-item:hover .g-overlay{opacity:1}
+.g-art{width:100%;height:100%}
+.g-overlay{
+  position:absolute;inset:0;
+  background:rgba(188,0,45,.3);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .35s;
+}
+.g-overlay span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:400;color:#fff;letter-spacing:2px;
+}
+/* gallery art gradient tiles */
+.g1{background:linear-gradient(160deg,#1a0d14,#3d1830,#0d0810)}
+.g2{background:linear-gradient(160deg,#0d1520,#1a2d45,#080f1a)}
+.g3{background:linear-gradient(160deg,#1a0d04,#3d1e06,#0d0802)}
+.g4{background:linear-gradient(160deg,#0d1a0d,#1a3a1a,#081008)}
+.g5{background:linear-gradient(160deg,#1a1220,#2d2040,#0d0c14)}
+.g6{background:linear-gradient(160deg,#1a1408,#3d2d10,#0d0c05)}
+.g7{background:linear-gradient(160deg,#0a0d1a,#14183d,#07090d)}
+.g8{background:linear-gradient(160deg,#1a0a10,#3d1220,#0d0608)}
+.gallery-kanji-art{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+}
+.gallery-kanji-art span{
+  font-family:'Noto Serif JP',serif;
+  font-size:80px;font-weight:700;
+  color:rgba(255,255,255,.05);
+}
+
+/* ── CTA ──────────────────────────────────── */
+#cta{
+  background:var(--cream2);
+  padding:160px 80px;
+  text-align:center;
+}
+.cta-torii{
+  font-size:60px;margin-bottom:24px;display:block;
 }
 .cta-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(34px,5.5vw,62px);
-  font-weight:800;line-height:1.1;
-  letter-spacing:-1.5px;margin-bottom:20px;
-  position:relative;z-index:1;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(44px,7vw,88px);font-weight:300;
+  line-height:1.05;letter-spacing:-2px;
+  color:var(--ink);margin-bottom:20px;
 }
+.cta-title em{font-style:italic;color:var(--red)}
 .cta-sub{
-  color:var(--light);font-size:17px;margin-bottom:48px;
-  max-width:460px;margin-left:auto;margin-right:auto;
-  line-height:1.75;opacity:.7;position:relative;z-index:1;
+  font-size:17px;color:var(--muted);
+  line-height:1.85;max-width:480px;
+  margin:0 auto 52px;font-weight:300;
 }
+.cta-buttons{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+}
+.btn-primary{
+  padding:18px 52px;
+  background:var(--red);color:#fff;
+  font-size:13px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;
+  border-radius:2px;transition:all .25s;
+  display:inline-flex;align-items:center;gap:10px;
+  border:none;cursor:pointer;
+}
+.btn-primary:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 20px 40px rgba(188,0,45,.3)}
+.btn-secondary{
+  padding:18px 52px;
+  background:transparent;color:var(--ink);
+  font-size:13px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;
+  border:1px solid var(--border);border-radius:2px;
+  transition:all .25s;display:inline-flex;align-items:center;gap:10px;
+}
+.btn-secondary:hover{border-color:var(--ink);transform:translateY(-2px)}
 
-/* ── FOOTER ─────────────────────────────────────── */
+/* ── FOOTER ───────────────────────────────── */
 footer{
-  padding:48px 64px;border-top:1px solid var(--border);
+  background:var(--ink);
+  padding:60px 80px;
+}
+.footer-inner{
   display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:24px;
 }
-.f-logo{
-  font-family:'Syne',sans-serif;font-size:16px;font-weight:800;
-  letter-spacing:3px;background:linear-gradient(90deg,var(--sky),var(--violet));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:700;letter-spacing:4px;color:#fff;
+  display:flex;align-items:center;gap:10px;
 }
-.f-copy{color:var(--muted);font-size:12px}
-.f-links{display:flex;gap:32px}
-.f-links a{
-  color:var(--muted);text-decoration:none;font-size:12px;
-  font-weight:500;transition:color .2s;
+.footer-logo-jp{
+  font-family:'Noto Serif JP',serif;
+  font-size:16px;color:var(--red);
 }
-.f-links a:hover{color:var(--white)}
+.footer-links{
+  display:flex;gap:32px;list-style:none;
+}
+.footer-links a{
+  font-size:11px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+  text-decoration:none;transition:color .2s;
+}
+.footer-links a:hover{color:#fff}
+.footer-copy{
+  font-size:11px;color:rgba(255,255,255,.2);letter-spacing:1px;
+}
 
-/* ── UTILITY ────────────────────────────────────── */
-.gsap-reveal{opacity:0;transform:translateY(48px)}
+/* ── REVEAL ANIMATIONS ────────────────────── */
+.reveal{opacity:0;transform:translateY(48px)}
+.reveal-left{opacity:0;transform:translateX(-40px)}
+.reveal-right{opacity:0;transform:translateX(40px)}
+.reveal-scale{opacity:0;transform:scale(.95)}
 
-/* ── RESPONSIVE ─────────────────────────────────── */
-@media(max-width:1024px){
-  nav{padding:18px 28px}
+/* ── SCROLLBAR HIDE ───────────────────────── */
+.hide-scroll{scrollbar-width:none;-ms-overflow-style:none}
+.hide-scroll::-webkit-scrollbar{display:none}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media(max-width:1100px){
+  nav{padding:0 32px}
+  section{padding:100px 40px}
+  .hero-inner{padding:0 40px 80px}
+  #destinations{padding:100px 0}
+  .dest-head{padding:0 40px}
+  .dest-card:first-child{margin-left:40px}
+  .food-intro{grid-template-columns:1fr}
+  .food-grid{grid-template-columns:1fr 1fr}
+  .tips-grid{grid-template-columns:1fr 1fr}
+  .culture-grid{grid-template-columns:1fr}
+  .culture-cell.big{grid-row:span 1}
+  .seasons-content.active{grid-template-columns:1fr;gap:40px}
+  #philosophy{padding:80px 40px}
+  #cta{padding:100px 40px}
+  footer{padding:40px 32px}
+}
+@media(max-width:700px){
   .nav-links{display:none}
-  section{padding:80px 28px}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .stat-item{border-right:none;border-bottom:1px solid var(--border)}
-  .stat-item:nth-child(2),.stat-item:nth-child(4){border-bottom:none}
-  .svc-grid{grid-template-columns:1fr}
-  .work-grid,.pricing-wrap{grid-template-columns:1fr;max-width:480px;margin:0 auto}
-  footer{flex-direction:column;gap:20px;text-align:center}
-}
-@media(max-width:600px){
-  section{padding:60px 20px}
-  .hero-title{letter-spacing:-1px}
-  .btn-row{flex-direction:column;align-items:center}
+  .hero-stats-row{display:none}
+  .hero-title{font-size:clamp(48px,12vw,80px)}
+  .dest-card{width:280px;height:420px}
+  .food-grid{grid-template-columns:1fr}
+  .tips-grid{grid-template-columns:1fr}
+  .intro-band{padding:14px 20px}
+  .seasons-tabs{overflow-x:auto}
+  .s-tab{padding:12px 20px;font-size:10px}
+  .footer-inner{flex-direction:column;gap:20px;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="logo">MY WEB STUDIO</div>
+<!-- SAKURA CANVAS + NAV -->
+<canvas id="sakura-canvas"></canvas>
+
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">
+    JAPAN
+    <span class="nav-logo-kanji">日本</span>
+  </a>
   <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#seasons">Seasons</a></li>
+    <li><a href="#food">Cuisine</a></li>
+    <li><a href="#tips">Travel Tips</a></li>
   </ul>
-  <a href="https://calendly.com" target="_blank" class="nav-cta">Book a Call</a>
+  <button class="nav-circle" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-noise"></div>
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-kanji-bg">日本</div>
   <div class="hero-inner">
-    <div class="hero-pill" id="hero-pill">
-      <span class="pill-dot"></span>
-      Professional Web Designer · Available Now
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <div class="hero-eyebrow-text">Discover · 発見 · Explore</div>
     </div>
-    <h1 class="hero-title">
-      <span class="line-1" id="h-line1">PREMIUM WEB DESIGN</span>
-      <span class="line-2" id="h-line2">BUILT TO WIN CLIENTS</span>
+    <h1 class="hero-title" id="hero-title">
+      <span id="ht1">Land of</span><br>
+      <em id="ht2">the Rising</em><br>
+      <span id="ht3">Sun</span>
     </h1>
-    <p class="hero-sub" id="hero-sub">
-      A professional web designer crafting high-performance, visually striking websites for ambitious businesses — delivered in under 14 days.
-    </p>
-    <div class="hero-price-badge" id="hero-price">
-      <div>
-        <div class="price-num">1,500 AED</div>
-        <div class="price-meta" style="margin-top:2px">One-time · Full ownership</div>
+    <div class="hero-bottom">
+      <p class="hero-sub" id="hero-sub">
+        Where ancient traditions and futuristic innovation coexist in perfect harmony. A journey that rewires how you see the world.
+      </p>
+      <div class="hero-stats-row" id="hero-stats">
+        <div class="hero-stat">
+          <div class="num">6,852</div>
+          <div class="lbl">Islands</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">47</div>
+          <div class="lbl">Prefectures</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">2,600+</div>
+          <div class="lbl">Years of History</div>
+        </div>
       </div>
-      <div class="price-divider"></div>
-      <div>
-        <div class="price-num" style="font-size:18px">250 AED</div>
-        <div class="price-meta">Monthly maintenance</div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
       </div>
-    </div>
-    <div class="btn-row" id="hero-btns">
-      <a href="https://calendly.com" target="_blank" class="btn-main">📅 Book a Free 15-Min Call</a>
-      <a href="#work" class="btn-line">View Our Work →</a>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div id="stats">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-val">48h</div>
-      <div class="stat-lbl">First Draft</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-val">14d</div>
-      <div class="stat-lbl">Full Delivery</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-val">100%</div>
-      <div class="stat-lbl">Satisfaction</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-val">∞</div>
-      <div class="stat-lbl">Revisions</div>
-    </div>
+<!-- INTRO BAND -->
+<div id="intro-band">
+  <div class="band-track" id="band-track">
+    <span class="band-item">Tokyo · 東京</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Cherry Blossoms · 桜</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Mount Fuji · 富士山</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Kyoto Temples · 京都</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Ramen · ラーメン</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Shinkansen · 新幹線</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Sumo · 相撲</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Onsen · 温泉</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Bushido · 武士道</span>
+    <span class="band-item band-dot">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="band-item">Tokyo · 東京</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Cherry Blossoms · 桜</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Mount Fuji · 富士山</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Kyoto Temples · 京都</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Ramen · ラーメン</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Shinkansen · 新幹線</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Sumo · 相撲</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Onsen · 温泉</span>
+    <span class="band-item band-dot">✦</span>
+    <span class="band-item">Bushido · 武士道</span>
+    <span class="band-item band-dot">✦</span>
   </div>
 </div>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="container">
-    <div class="sec-head gsap-reveal">
-      <div class="tag">What We Build</div>
-      <h2 class="sec-title">Every project engineered<br>to convert and impress</h2>
-      <p class="sec-sub">No templates. No shortcuts. Every line of code and every pixel serves one goal — turning visitors into paying clients.</p>
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="dest-head reveal">
+    <div class="section-tag">Where to Go</div>
+    <h2 class="section-title">Iconic <em>Destinations</em></h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.4)">From neon-lit megacities to serene mountain villages — every corner of Japan offers something extraordinary.</p>
+  </div>
+  <div class="dest-scroll hide-scroll" id="dest-scroll">
+
+    <div class="dest-card reveal">
+      <div class="dest-art d1 dest-art-1">
+        <svg class="skyline-svg" viewBox="0 0 340 200" preserveAspectRatio="none">
+          <rect x="20" y="60" width="18" height="140" fill="rgba(100,120,200,.15)"/>
+          <rect x="45" y="30" width="14" height="170" fill="rgba(100,120,200,.1)"/>
+          <rect x="66" y="80" width="20" height="120" fill="rgba(100,120,200,.12)"/>
+          <rect x="93" y="20" width="16" height="180" fill="rgba(100,120,200,.18)"/>
+          <rect x="116" y="50" width="24" height="150" fill="rgba(100,120,200,.13)"/>
+          <rect x="147" y="40" width="12" height="160" fill="rgba(100,120,200,.1)"/>
+          <rect x="166" y="10" width="28" height="190" fill="rgba(100,120,200,.2)"/>
+          <rect x="201" y="55" width="20" height="145" fill="rgba(100,120,200,.14)"/>
+          <rect x="228" y="70" width="16" height="130" fill="rgba(100,120,200,.1)"/>
+          <rect x="250" y="35" width="22" height="165" fill="rgba(100,120,200,.16)"/>
+          <rect x="279" y="60" width="18" height="140" fill="rgba(100,120,200,.12)"/>
+          <rect x="304" y="25" width="15" height="175" fill="rgba(100,120,200,.09)"/>
+          <!-- Tokyo Tower -->
+          <polygon points="155,5 165,5 168,160 152,160" fill="rgba(188,0,45,.2)"/>
+          <rect x="154" y="2" width="13" height="6" fill="rgba(188,0,45,.3)"/>
+        </svg>
+      </div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-num">01 / 05</div>
+        <div class="dest-name">Tokyo</div>
+        <div class="dest-kanji">東京</div>
+        <div class="dest-desc">The world's largest metropolis — a neon-lit labyrinth of tradition and innovation, where ancient shrines nestle between glass skyscrapers.</div>
+        <div class="dest-tag-list">
+          <span class="dest-tag-chip">Shibuya</span>
+          <span class="dest-tag-chip">Harajuku</span>
+          <span class="dest-tag-chip">Asakusa</span>
+        </div>
+      </div>
     </div>
-    <div class="svc-grid">
-      <div class="svc-item gsap-reveal">
-        <div class="svc-num">01</div>
-        <h3>Landing Pages</h3>
-        <p>Conversion-focused single pages with scroll-triggered animations, social proof sections, and CTAs that drive action. Optimized for paid traffic and organic search.</p>
-        <div class="svc-arrow">Explore →</div>
+
+    <div class="dest-card reveal">
+      <div class="dest-art d2 dest-art-2">
+        <!-- Pagoda silhouette -->
+        <svg class="skyline-svg" viewBox="0 0 340 240" preserveAspectRatio="none">
+          <g fill="rgba(200,80,100,.15)">
+            <!-- Five-story pagoda -->
+            <rect x="155" y="190" width="30" height="50"/>
+            <rect x="148" y="165" width="44" height="30"/>
+            <polygon points="148,165 192,165 190,168 150,168"/>
+            <rect x="142" y="140" width="56" height="30"/>
+            <polygon points="142,140 198,140 195,144 145,144"/>
+            <rect x="136" y="115" width="68" height="30"/>
+            <polygon points="136,115 204,115 201,120 139,120"/>
+            <rect x="130" y="90" width="80" height="30"/>
+            <polygon points="130,90 210,90 206,96 134,96"/>
+            <rect x="124" y="65" width="92" height="30"/>
+            <polygon points="124,65 216,65 211,72 129,72"/>
+            <rect x="163" y="20" width="14" height="48"/>
+          </g>
+          <!-- Torii gate small -->
+          <g fill="rgba(188,0,45,.12)">
+            <rect x="40" y="140" width="60" height="8"/>
+            <rect x="40" y="128" width="60" height="5"/>
+            <rect x="44" y="133" width="6" height="60"/>
+            <rect x="90" y="133" width="6" height="60"/>
+          </g>
+        </svg>
       </div>
-      <div class="svc-item gsap-reveal">
-        <div class="svc-num">02</div>
-        <h3>Business Websites</h3>
-        <p>Full multi-page sites for restaurants, gyms, clinics, agencies, and service businesses. Designed to build instant trust and move visitors toward your most important action.</p>
-        <div class="svc-arrow">Explore →</div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-num">02 / 05</div>
+        <div class="dest-name">Kyoto</div>
+        <div class="dest-kanji">京都</div>
+        <div class="dest-desc">Japan's ancient imperial capital. Over 1,600 Buddhist temples, Shinto shrines, and perfectly preserved geisha districts.</div>
+        <div class="dest-tag-list">
+          <span class="dest-tag-chip">Fushimi Inari</span>
+          <span class="dest-tag-chip">Gion</span>
+          <span class="dest-tag-chip">Arashiyama</span>
+        </div>
       </div>
-      <div class="svc-item gsap-reveal">
-        <div class="svc-num">03</div>
-        <h3>Portfolio &amp; Brand Sites</h3>
-        <p>High-impact personal and portfolio sites for creatives, consultants, and professionals. Make your first impression so strong it becomes your last pitch.</p>
-        <div class="svc-arrow">Explore →</div>
+    </div>
+
+    <div class="dest-card reveal">
+      <div class="dest-art d3 dest-art-3">
+        <svg class="skyline-svg" viewBox="0 0 340 240" preserveAspectRatio="none">
+          <!-- Osaka Castle -->
+          <g fill="rgba(80,160,100,.15)">
+            <rect x="145" y="170" width="50" height="70"/>
+            <rect x="135" y="145" width="70" height="30"/>
+            <polygon points="135,145 205,145 202,148 138,148"/>
+            <rect x="125" y="118" width="90" height="32"/>
+            <polygon points="125,118 215,118 211,122 129,122"/>
+            <rect x="115" y="93" width="110" height="30"/>
+            <polygon points="115,93 225,93 220,98 120,98"/>
+            <rect x="158" y="55" width="24" height="42"/>
+            <polygon points="158,38 182,38 178,55 162,55"/>
+          </g>
+          <!-- Street food stalls -->
+          <g fill="rgba(80,160,100,.08)">
+            <rect x="20" y="185" width="80" height="55"/>
+            <rect x="240" y="185" width="80" height="55"/>
+          </g>
+        </svg>
       </div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-num">03 / 05</div>
+        <div class="dest-name">Osaka</div>
+        <div class="dest-kanji">大阪</div>
+        <div class="dest-desc">Japan's kitchen and comedy capital. Known for Dotonbori's electric nightlife, street food culture, and the friendliest people in the country.</div>
+        <div class="dest-tag-list">
+          <span class="dest-tag-chip">Dotonbori</span>
+          <span class="dest-tag-chip">Namba</span>
+          <span class="dest-tag-chip">Takoyaki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <div class="dest-art d4 dest-art-4">
+        <!-- Mount Fuji / Hokkaido landscape -->
+        <svg class="skyline-svg" viewBox="0 0 340 240" preserveAspectRatio="none">
+          <!-- Mountain range -->
+          <polygon points="0,240 80,100 160,240" fill="rgba(200,150,80,.1)"/>
+          <polygon points="60,240 170,60 280,240" fill="rgba(200,150,80,.14)"/>
+          <polygon points="180,240 260,120 340,240" fill="rgba(200,150,80,.09)"/>
+          <!-- Snow cap -->
+          <polygon points="130,80 170,60 210,80 190,75 170,65 150,75" fill="rgba(255,255,255,.15)"/>
+          <!-- Trees silhouette -->
+          <g fill="rgba(200,150,80,.1)">
+            <rect x="0" y="200" width="12" height="40"/>
+            <polygon points="6,175 -2,205 14,205"/>
+            <rect x="20" y="200" width="12" height="40"/>
+            <polygon points="26,172 18,205 34,205"/>
+            <rect x="300" y="200" width="12" height="40"/>
+            <polygon points="306,175 298,205 314,205"/>
+            <rect x="320" y="200" width="12" height="40"/>
+            <polygon points="326,172 318,205 334,205"/>
+          </g>
+        </svg>
+      </div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-num">04 / 05</div>
+        <div class="dest-name">Hokkaido</div>
+        <div class="dest-kanji">北海道</div>
+        <div class="dest-desc">Japan's wild north. Lavender fields, powder snow, bear-inhabited forests, and seafood so fresh it melts on your tongue.</div>
+        <div class="dest-tag-list">
+          <span class="dest-tag-chip">Sapporo</span>
+          <span class="dest-tag-chip">Furano</span>
+          <span class="dest-tag-chip">Niseko</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <div class="dest-art d5 dest-art-5">
+        <!-- Peace dome + bridges -->
+        <svg class="skyline-svg" viewBox="0 0 340 240" preserveAspectRatio="none">
+          <!-- Atomic bomb dome skeleton -->
+          <g fill="none" stroke="rgba(60,100,160,.25)" stroke-width="1.5">
+            <ellipse cx="170" cy="120" rx="55" ry="60"/>
+            <ellipse cx="170" cy="120" rx="40" ry="45"/>
+            <line x1="170" y1="60" x2="170" y2="180"/>
+            <line x1="115" y1="120" x2="225" y2="120"/>
+          </g>
+          <rect x="145" y="175" width="50" height="65" fill="rgba(60,100,160,.1)"/>
+          <!-- Bridge cables -->
+          <g stroke="rgba(60,100,160,.15)" stroke-width="1" fill="none">
+            <line x1="0" y1="200" x2="340" y2="200"/>
+            <line x1="50" y1="180" x2="50" y2="210"/>
+            <line x1="80" y1="160" x2="80" y2="210"/>
+            <line x1="110" y1="145" x2="110" y2="210"/>
+            <line x1="230" y1="145" x2="230" y2="210"/>
+            <line x1="260" y1="160" x2="260" y2="210"/>
+            <line x1="290" y1="180" x2="290" y2="210"/>
+          </g>
+        </svg>
+      </div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-num">05 / 05</div>
+        <div class="dest-name">Hiroshima</div>
+        <div class="dest-kanji">広島</div>
+        <div class="dest-desc">A city reborn from tragedy into a global symbol of peace, resilience, and the enduring beauty of the human spirit.</div>
+        <div class="dest-tag-list">
+          <span class="dest-tag-chip">Peace Park</span>
+          <span class="dest-tag-chip">Miyajima</span>
+          <span class="dest-tag-chip">Okonomiyaki</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture">
+  <div class="container">
+    <div class="section-tag reveal">Traditions &amp; Arts</div>
+    <h2 class="section-title reveal">A Culture <em>Thousands</em><br>of Years Deep</h2>
+    <div class="culture-grid">
+
+      <div class="culture-cell cc1 big reveal-left">
+        <div class="culture-kanji">道</div>
+        <div class="culture-cell-inner">
+          <div class="culture-num">01 — The Way</div>
+          <h3>Bushido &amp; The Samurai Code</h3>
+          <p>The philosophical framework that shaped Japanese society for centuries. Honour, discipline, loyalty, and the art of the sword — not as violence but as a path to self-mastery.</p>
+        </div>
+      </div>
+
+      <div class="culture-cell cc2 reveal-right">
+        <div class="culture-kanji">茶</div>
+        <div class="culture-cell-inner">
+          <div class="culture-num">02 — Harmony</div>
+          <h3>Tea Ceremony · 茶道</h3>
+          <p>Chanoyu transforms the act of preparing tea into moving meditation. Every gesture carries meaning; every object is chosen with intention.</p>
+        </div>
+      </div>
+
+      <div class="culture-cell cc3 reveal-right">
+        <div class="culture-kanji">花</div>
+        <div class="culture-cell-inner">
+          <div class="culture-num">03 — Impermanence</div>
+          <h3>Ikebana · 生け花</h3>
+          <p>The Japanese art of flower arrangement. Unlike Western bouquets, ikebana captures empty space, asymmetry, and the fleeting nature of life itself.</p>
+        </div>
+      </div>
+
+      <div class="culture-cell cc4 reveal">
+        <div class="culture-kanji">楽</div>
+        <div class="culture-cell-inner">
+          <div class="culture-num">04 — Performance</div>
+          <h3>Kabuki &amp; Noh Theatre</h3>
+          <p>Ancient theatrical traditions where silence speaks louder than words. A single painted face can express the full spectrum of human emotion.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- CASE STUDIES -->
-<section id="work">
+<!-- SEASONS -->
+<section id="seasons">
   <div class="container">
-    <div class="sec-head gsap-reveal">
-      <div class="tag">Sample Builds</div>
-      <h2 class="sec-title">Real craft.<br>Honest labels.</h2>
-      <p class="sec-sub">Demo sites that show exactly what we deliver per industry. Always labeled clearly — we never claim fake clients.</p>
+    <div class="seasons-head">
+      <div class="section-tag reveal">Four Faces of Japan</div>
+      <h2 class="section-title reveal">The Art of <em>Seasons</em></h2>
+      <p class="section-sub reveal" style="color:rgba(255,255,255,.4)">Japan invented the philosophy of seasonal appreciation. Each quarter transforms the entire country into something unrecognizable — and unmissable.</p>
     </div>
-    <div class="work-grid">
+    <div class="seasons-tabs reveal">
+      <button class="s-tab active" data-season="spring">Spring</button>
+      <button class="s-tab" data-season="summer">Summer</button>
+      <button class="s-tab" data-season="autumn">Autumn</button>
+      <button class="s-tab" data-season="winter">Winter</button>
+    </div>
 
-      <div class="case-card gsap-reveal">
-        <div class="c-visual cv1">
-          <div class="browser-chrome">
-            <div class="browser-bar">
-              <div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div>
-            </div>
-            <div class="browser-body">
-              <div class="b-banner"><div style="width:50%;height:6px;background:rgba(255,255,255,.5);border-radius:3px"></div></div>
-              <div class="b-line" style="width:75%"></div><div class="b-line" style="width:50%"></div>
-              <div class="b-cols"><div class="b-col"></div><div class="b-col"></div><div class="b-col"></div></div>
-            </div>
-          </div>
-          <span class="sbadge">Sample Build</span>
-        </div>
-        <div class="c-body">
-          <div class="c-industry">Restaurant · Food &amp; Beverage</div>
-          <h3>Ember Kitchen Co.</h3>
-          <p>Premium restaurant site with reservations, animated menu, and a moody identity that sells the experience before a customer walks in.</p>
-          <div class="tags">
-            <span class="tag-chip">UI Design</span>
-            <span class="tag-chip">Reservations</span>
-            <span class="tag-chip">Mobile-First</span>
-          </div>
+    <!-- Spring -->
+    <div class="seasons-content active" id="s-spring">
+      <div class="season-visual sv-spring reveal-left">
+        <div class="season-visual-art">
+          <div class="season-orb spring-orb"></div>
+          <span class="season-visual-kanji">春</span>
+          <!-- Cherry blossom branches SVG -->
+          <svg style="position:absolute;width:80%;height:80%;opacity:.5" viewBox="0 0 300 300">
+            <path d="M150 280 Q145 200 160 150 Q175 100 150 50" stroke="rgba(200,120,140,.5)" stroke-width="3" fill="none"/>
+            <path d="M160 150 Q200 120 240 100" stroke="rgba(200,120,140,.4)" stroke-width="2" fill="none"/>
+            <path d="M155 170 Q110 150 70 130" stroke="rgba(200,120,140,.4)" stroke-width="2" fill="none"/>
+            <path d="M163 130 Q190 100 220 80" stroke="rgba(200,120,140,.3)" stroke-width="1.5" fill="none"/>
+            <!-- Blossoms -->
+            <g fill="rgba(255,183,197,.7)">
+              <circle cx="240" cy="100" r="6"/><circle cx="248" cy="95" r="4"/><circle cx="235" cy="93" r="5"/>
+              <circle cx="220" cy="80" r="5"/><circle cx="228" cy="75" r="4"/>
+              <circle cx="70" cy="130" r="6"/><circle cx="62" cy="125" r="4"/><circle cx="75" cy="122" r="5"/>
+              <circle cx="150" cy="50" r="7"/><circle cx="158" cy="44" r="5"/><circle cx="143" cy="45" r="5"/>
+            </g>
+          </svg>
         </div>
       </div>
-
-      <div class="case-card gsap-reveal">
-        <div class="c-visual cv2">
-          <div class="browser-chrome">
-            <div class="browser-bar">
-              <div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div>
-            </div>
-            <div class="browser-body">
-              <div class="b-banner"><div style="width:60%;height:6px;background:rgba(255,255,255,.5);border-radius:3px"></div></div>
-              <div class="b-line" style="width:68%"></div><div class="b-line" style="width:44%"></div>
-              <div class="b-cols"><div class="b-col"></div><div class="b-col"></div><div class="b-col"></div></div>
-            </div>
-          </div>
-          <span class="sbadge">Sample Build</span>
-        </div>
-        <div class="c-body">
-          <div class="c-industry">Fitness · Health &amp; Wellness</div>
-          <h3>IronPeak Fitness</h3>
-          <p>High-energy gym site with class schedules, trainer profiles, and a membership flow that makes signing up feel inevitable.</p>
-          <div class="tags">
-            <span class="tag-chip">Lead Gen</span>
-            <span class="tag-chip">Scheduling</span>
-            <span class="tag-chip">Conversion</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="case-card gsap-reveal">
-        <div class="c-visual cv3">
-          <div class="browser-chrome">
-            <div class="browser-bar">
-              <div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div>
-            </div>
-            <div class="browser-body">
-              <div class="b-banner"><div style="width:55%;height:6px;background:rgba(255,255,255,.5);border-radius:3px"></div></div>
-              <div class="b-line" style="width:72%"></div><div class="b-line" style="width:46%"></div>
-              <div class="b-cols"><div class="b-col"></div><div class="b-col"></div><div class="b-col"></div></div>
-            </div>
-          </div>
-          <span class="sbadge">Sample Build</span>
-        </div>
-        <div class="c-body">
-          <div class="c-industry">Real Estate · Property</div>
-          <h3>Skyline Realty Group</h3>
-          <p>Luxury real estate site with listings, interactive gallery, and an inquiry system that positions the agent as the premium choice.</p>
-          <div class="tags">
-            <span class="tag-chip">Listings</span>
-            <span class="tag-chip">Luxury Feel</span>
-            <span class="tag-chip">Lead Capture</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="sec-head gsap-reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <div class="tag" style="justify-content:center">Pricing</div>
-      <h2 class="sec-title">Transparent. Simple. Fair.</h2>
-      <p class="sec-sub" style="margin:0 auto">One-time build. Optional maintenance. No hidden fees, no lock-in — ever.</p>
-    </div>
-    <div class="pricing-wrap">
-
-      <div class="p-card featured gsap-reveal">
-        <div class="feat-tag">Website Build</div>
-        <div class="p-label" style="margin-top:14px">One-Time Payment</div>
-        <div class="p-amount">1,500</div>
-        <div class="p-unit">AED</div>
-        <p class="p-desc">A complete custom-designed business website built to convert visitors into paying clients — delivered in 14 days.</p>
-        <div class="p-sep"></div>
-        <ul class="p-list">
-          <li>Up to 8 pages, fully custom designed</li>
-          <li>Mobile-responsive &amp; lightning fast</li>
-          <li>Scroll animations &amp; micro-interactions</li>
-          <li>SEO setup + Google Analytics</li>
-          <li>Contact form + Google Maps</li>
-          <li>Delivered in 14 days</li>
-          <li>Unlimited revisions until you're happy</li>
-          <li>100% ownership — all files yours</li>
+      <div class="season-info reveal-right">
+        <div class="s-jp">春 · Haru</div>
+        <h3>Spring</h3>
+        <p>Cherry blossom season — hanami — is not just tourism. It is a national philosophy about joy, impermanence, and being present in beauty before it fades. Pink clouds of sakura transform Japan from late March through May.</p>
+        <ul class="season-highlights">
+          <li><span class="sh-dot spring-dot"></span>Hanami picnics under sakura trees</li>
+          <li><span class="sh-dot spring-dot"></span>Wisteria tunnels at Kawachi Fuji</li>
+          <li><span class="sh-dot spring-dot"></span>Golden Week festivals nationwide</li>
+          <li><span class="sh-dot spring-dot"></span>Plum blossoms in Mito — Japan's best kept secret</li>
         </ul>
-        <a href="https://calendly.com" target="_blank" class="p-action p-action-solid">Book a Free Call →</a>
+      </div>
+    </div>
+
+    <!-- Summer -->
+    <div class="seasons-content" id="s-summer">
+      <div class="season-visual sv-summer reveal-left">
+        <div class="season-visual-art">
+          <div class="season-orb summer-orb"></div>
+          <span class="season-visual-kanji">夏</span>
+          <svg style="position:absolute;width:70%;height:70%;opacity:.4" viewBox="0 0 300 300">
+            <!-- Fireworks -->
+            <g stroke="rgba(80,220,120,.6)" stroke-width="1.5" fill="none">
+              <line x1="150" y1="150" x2="150" y2="80"/><line x1="150" y1="150" x2="150" y2="220"/>
+              <line x1="150" y1="150" x2="80" y2="150"/><line x1="150" y1="150" x2="220" y2="150"/>
+              <line x1="150" y1="150" x2="100" y2="100"/><line x1="150" y1="150" x2="200" y2="200"/>
+              <line x1="150" y1="150" x2="100" y2="200"/><line x1="150" y1="150" x2="200" y2="100"/>
+            </g>
+            <g fill="rgba(80,220,120,.8)">
+              <circle cx="150" cy="78" r="4"/><circle cx="150" cy="222" r="4"/>
+              <circle cx="78" cy="150" r="4"/><circle cx="222" cy="150" r="4"/>
+              <circle cx="97" cy="97" r="4"/><circle cx="203" cy="203" r="4"/>
+              <circle cx="97" cy="203" r="4"/><circle cx="203" cy="97" r="4"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="season-info reveal-right">
+        <div class="s-jp">夏 · Natsu</div>
+        <h3>Summer</h3>
+        <p>Matsuri festivals explode across the country. Thousands of lanterns float on rivers. Fireworks paint the sky every weekend. The heat is oppressive, the energy electric, and the yukata-clad crowds unforgettable.</p>
+        <ul class="season-highlights">
+          <li><span class="sh-dot summer-dot"></span>Gion Matsuri in Kyoto — Japan's grandest festival</li>
+          <li><span class="sh-dot summer-dot"></span>Tanabata — the Star Festival, July 7th</li>
+          <li><span class="sh-dot summer-dot"></span>Obon lantern floating ceremonies</li>
+          <li><span class="sh-dot summer-dot"></span>Awa Odori dance festival in Tokushima</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Autumn -->
+    <div class="seasons-content" id="s-autumn">
+      <div class="season-visual sv-autumn reveal-left">
+        <div class="season-visual-art">
+          <div class="season-orb autumn-orb"></div>
+          <span class="season-visual-kanji">秋</span>
+          <svg style="position:absolute;width:75%;height:75%;opacity:.45" viewBox="0 0 300 300">
+            <!-- Maple leaf simplified -->
+            <path d="M150 200 Q130 160 100 140 Q120 135 130 120 Q115 110 110 90 Q130 100 145 90 Q148 70 150 50 Q152 70 155 90 Q170 100 190 90 Q185 110 170 120 Q180 135 200 140 Q170 160 150 200Z" fill="rgba(249,115,22,.25)" stroke="rgba(249,115,22,.4)" stroke-width="1"/>
+            <path d="M150 260 L150 195" stroke="rgba(180,80,20,.4)" stroke-width="2" fill="none"/>
+            <!-- Falling leaves -->
+            <g fill="rgba(249,115,22,.2)">
+              <ellipse cx="80" cy="120" rx="12" ry="8" transform="rotate(-30 80 120)"/>
+              <ellipse cx="220" cy="80" rx="10" ry="7" transform="rotate(20 220 80)"/>
+              <ellipse cx="60" cy="200" rx="9" ry="6" transform="rotate(-15 60 200)"/>
+              <ellipse cx="240" cy="180" rx="11" ry="7" transform="rotate(40 240 180)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="season-info reveal-right">
+        <div class="s-jp">秋 · Aki</div>
+        <h3>Autumn</h3>
+        <p>Koyo — the art of viewing autumn leaves — rivals cherry blossom season in beauty. Maple trees ignite in crimson, orange, and gold, transforming temple gardens into living paintings.</p>
+        <ul class="season-highlights">
+          <li><span class="sh-dot autumn-dot"></span>Koyo maple viewing, Nov–Dec</li>
+          <li><span class="sh-dot autumn-dot"></span>Nikko's shrines in full autumn color</li>
+          <li><span class="sh-dot autumn-dot"></span>Naejangsan-style forests in Tohoku</li>
+          <li><span class="sh-dot autumn-dot"></span>Harvest festivals and new sake season</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Winter -->
+    <div class="seasons-content" id="s-winter">
+      <div class="season-visual sv-winter reveal-left">
+        <div class="season-visual-art">
+          <div class="season-orb winter-orb"></div>
+          <span class="season-visual-kanji">冬</span>
+          <svg style="position:absolute;width:70%;height:70%;opacity:.4" viewBox="0 0 300 300">
+            <!-- Snowflake -->
+            <g stroke="rgba(147,197,253,.7)" stroke-width="1.5" fill="none">
+              <line x1="150" y1="80" x2="150" y2="220"/>
+              <line x1="80" y1="150" x2="220" y2="150"/>
+              <line x1="99" y1="99" x2="201" y2="201"/>
+              <line x1="201" y1="99" x2="99" y2="201"/>
+              <!-- Branches -->
+              <line x1="150" y1="100" x2="138" y2="112"/><line x1="150" y1="100" x2="162" y2="112"/>
+              <line x1="150" y1="200" x2="138" y2="188"/><line x1="150" y1="200" x2="162" y2="188"/>
+              <line x1="100" y1="150" x2="112" y2="138"/><line x1="100" y1="150" x2="112" y2="162"/>
+              <line x1="200" y1="150" x2="188" y2="138"/><line x1="200" y1="150" x2="188" y2="162"/>
+            </g>
+            <circle cx="150" cy="150" r="8" fill="rgba(147,197,253,.5)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="season-info reveal-right">
+        <div class="s-jp">冬 · Fuyu</div>
+        <h3>Winter</h3>
+        <p>Snow transforms Japan into ink paintings. Monkey hot springs in Nagano, powder skiing in Niseko, and illumination festivals that turn entire cities into galaxies of light.</p>
+        <ul class="season-highlights">
+          <li><span class="sh-dot winter-dot"></span>Snow monkeys soaking in Jigokudani onsen</li>
+          <li><span class="sh-dot winter-dot"></span>Sapporo Snow Festival — giant ice sculptures</li>
+          <li><span class="sh-dot winter-dot"></span>Winter illuminations in Nabana no Sato</li>
+          <li><span class="sh-dot winter-dot"></span>Poweder skiing at Niseko, Hokkaido</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOD -->
+<section id="food">
+  <div class="container">
+    <div class="food-intro">
+      <div>
+        <div class="section-tag reveal">Cuisine</div>
+        <h2 class="section-title reveal">Japan <em>Feeds</em><br>the Soul</h2>
+      </div>
+      <p class="section-sub reveal" style="align-self:end">Japan has more Michelin stars than any other country on Earth. But the best meals are found in tiny basement ramen shops and night market stalls.</p>
+    </div>
+    <div class="food-grid">
+
+      <div class="food-card reveal">
+        <div class="food-visual fv1">
+          <div class="food-kanji-art">寿司</div>
+          <span class="food-emoji">🍣</span>
+        </div>
+        <div class="food-body">
+          <h3>Sushi</h3>
+          <div class="food-jp">寿司</div>
+          <p>Not just raw fish — a precise art form perfected over centuries. The rice, the knife work, the temperature — every element engineered for a single perfect bite.</p>
+        </div>
       </div>
 
-      <div class="p-card gsap-reveal">
-        <div class="p-label">Monthly Maintenance</div>
-        <div class="p-amount">250</div>
-        <div class="p-unit">AED / Month</div>
-        <p class="p-desc">Keep your site fast, secure, and up-to-date. Optional add-on after your build. Cancel anytime, no contracts.</p>
-        <div class="p-sep"></div>
-        <ul class="p-list">
-          <li>Monthly content updates</li>
-          <li>Security patches &amp; plugin updates</li>
-          <li>Uptime monitoring &amp; performance</li>
-          <li>Backup &amp; recovery</li>
-          <li>Priority WhatsApp support</li>
-          <li>Monthly performance report</li>
-          <li>Cancel anytime</li>
-        </ul>
-        <a href="https://calendly.com" target="_blank" class="p-action p-action-ghost">Get Started</a>
+      <div class="food-card reveal">
+        <div class="food-visual fv2">
+          <div class="food-kanji-art">拉麺</div>
+          <span class="food-emoji">🍜</span>
+        </div>
+        <div class="food-body">
+          <h3>Ramen</h3>
+          <div class="food-jp">ラーメン</div>
+          <p>Each region has its own obsession. Sapporo's miso, Hakata's tonkotsu, Tokyo's shoyu — a bowl of ramen is a window into the soul of its city.</p>
+        </div>
+      </div>
+
+      <div class="food-card reveal">
+        <div class="food-visual fv3">
+          <div class="food-kanji-art">焼肉</div>
+          <span class="food-emoji">🥩</span>
+        </div>
+        <div class="food-body">
+          <h3>Wagyu</h3>
+          <div class="food-jp">和牛</div>
+          <p>Kobe, Matsusaka, Omi — beef so marbled it dissolves before you can describe it. The most carefully raised animal on earth, served as an act of profound respect.</p>
+        </div>
+      </div>
+
+      <div class="food-card reveal">
+        <div class="food-visual fv4">
+          <div class="food-kanji-art">天麩羅</div>
+          <span class="food-emoji">🍤</span>
+        </div>
+        <div class="food-body">
+          <h3>Tempura</h3>
+          <div class="food-jp">天ぷら</div>
+          <p>Vegetables and seafood in a featherlight batter, fried to an audible crunch. A technique Japan perfected from a Portuguese original and made completely its own.</p>
+        </div>
+      </div>
+
+      <div class="food-card reveal">
+        <div class="food-visual fv5">
+          <div class="food-kanji-art">抹茶</div>
+          <span class="food-emoji">🍵</span>
+        </div>
+        <div class="food-body">
+          <h3>Matcha</h3>
+          <div class="food-jp">抹茶</div>
+          <p>Ground green tea powder that permeates everything — from ceremonial bowls to ice cream, Kit-Kats, and croissants. Japan's most exported obsession.</p>
+        </div>
+      </div>
+
+      <div class="food-card reveal">
+        <div class="food-visual fv6">
+          <div class="food-kanji-art">酒</div>
+          <span class="food-emoji">🍶</span>
+        </div>
+        <div class="food-body">
+          <h3>Sake</h3>
+          <div class="food-jp">日本酒</div>
+          <p>Brewed from rice, water, and centuries of craft. Junmai, ginjo, daiginjo — a spectrum from earthy and warm to floral and cold that rivals the finest wines.</p>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="phil-kanji">侘び寂び</div>
+  <h2 class="phil-title reveal">
+    "<em>Wabi-Sabi</em> — finding beauty in<br>imperfection, impermanence,<br>and incompleteness."
+  </h2>
+  <p class="phil-sub reveal">Japan didn't just build a civilization — it built a philosophy. Every tradition, every art form, every bowl of rice carries centuries of intention.</p>
+  <div class="phil-pills reveal">
+    <span class="phil-pill">Wabi-Sabi · 侘び寂び</span>
+    <span class="phil-pill">Ikigai · 生き甲斐</span>
+    <span class="phil-pill">Kaizen · 改善</span>
+    <span class="phil-pill">Ma · 間</span>
+    <span class="phil-pill">Mono no Aware · 物の哀れ</span>
+  </div>
+</section>
+
+<!-- TRAVEL TIPS -->
+<section id="tips">
   <div class="container">
-    <div class="sec-head gsap-reveal">
-      <div class="tag">FAQ</div>
-      <h2 class="sec-title">Every question,<br>answered upfront</h2>
+    <div class="section-tag reveal">Before You Go</div>
+    <h2 class="section-title reveal">Travel <em>Smarter</em></h2>
+    <div class="tips-grid">
+      <div class="tip-item reveal">
+        <span class="tip-icon">🚅</span>
+        <div class="tip-num">01</div>
+        <h3>JR Pass</h3>
+        <p>Buy a Japan Rail Pass before you arrive. Unlimited bullet train travel for 7, 14, or 21 days — it pays for itself on your first shinkansen ride.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">💴</span>
+        <div class="tip-num">02</div>
+        <h3>Cash Culture</h3>
+        <p>Japan is still largely cash-based. Withdraw yen at 7-Eleven ATMs — they accept foreign cards and charge minimal fees. Always carry ¥10,000.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">🗾</span>
+        <div class="tip-num">03</div>
+        <h3>IC Cards</h3>
+        <p>Get a Suica or Pasmo card at any station. It handles every train, bus, and most convenience store purchases without dealing with tickets.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">🏨</span>
+        <div class="tip-num">04</div>
+        <h3>Ryokan Stay</h3>
+        <p>Book at least one night in a traditional ryokan. Futon on tatami, multi-course kaiseki dinner, communal onsen — it's the single best thing you can do in Japan.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">🙇</span>
+        <div class="tip-num">05</div>
+        <h3>Etiquette</h3>
+        <p>Remove shoes at temples and homes. Don't eat while walking. Both hands for business cards. Bow instead of handshake. The rules matter — locals notice.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">📱</span>
+        <div class="tip-num">06</div>
+        <h3>Pocket WiFi</h3>
+        <p>Rent a pocket WiFi at the airport. Japan's maps, transit apps, and restaurant translation tools make a connected phone worth its weight in gold here.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">🌸</span>
+        <div class="tip-num">07</div>
+        <h3>Book Early</h3>
+        <p>Cherry blossom and autumn foliage seasons book out 6+ months ahead. Use Japan Meteorological Corporation's free forecasts to pin your exact dates.</p>
+      </div>
+      <div class="tip-item reveal">
+        <span class="tip-icon">🍱</span>
+        <div class="tip-num">08</div>
+        <h3>Convenience Stores</h3>
+        <p>7-Eleven, FamilyMart, and Lawson serve legitimately excellent food 24/7. Onigiri, soba, hot oden, and fresh pastries — the world's best convenience stores by a mile.</p>
+      </div>
     </div>
-    <div class="faq-list gsap-reveal">
+  </div>
+</section>
 
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How long does it take to build my website?
-          <div class="faq-ico">+</div>
-        </div>
-        <div class="faq-ans"><p>14 days from the moment you provide your content. We send a simple checklist on day one — no guessing, no chasing. Just check the boxes and we handle everything else.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What do I need to provide to get started?
-          <div class="faq-ico">+</div>
-        </div>
-        <div class="faq-ans"><p>Your logo, brand colors, photos, and the text for each page. Don't have those? No problem — we can help with copy, stock photos, and basic brand setup. We've launched sites for clients who gave us nothing but a business name.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Do I own the website after you build it?
-          <div class="faq-ico">+</div>
-        </div>
-        <div class="faq-ans"><p>100%. Every file, every asset, every line of code is yours. We set it up on your own hosting account so you're never dependent on us. No ongoing platform fees, no lock-in.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What's included in the 250 AED/month maintenance?
-          <div class="faq-ico">+</div>
-        </div>
-        <div class="faq-ans"><p>Content updates, security patches, uptime monitoring, backups, priority WhatsApp support, and a monthly performance report. Completely optional — add it after your build and cancel anytime, no questions asked.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Why is your pricing public?
-          <div class="faq-ico">+</div>
-        </div>
-        <div class="faq-ans"><p>Because you deserve to know what you're paying before you pick up the phone. Public pricing filters out bad-fit projects and saves everyone's time — including yours.</p></div>
-      </div>
-
+<!-- GALLERY STRIP -->
+<section id="gallery">
+  <div class="gallery-track" id="gallery-track">
+    <div class="gallery-item">
+      <div class="g-art g1"><div class="gallery-kanji-art"><span>東京</span></div></div>
+      <div class="g-overlay"><span>Tokyo</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g2"><div class="gallery-kanji-art"><span>桜</span></div></div>
+      <div class="g-overlay"><span>Sakura</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g3"><div class="gallery-kanji-art"><span>富士</span></div></div>
+      <div class="g-overlay"><span>Mt. Fuji</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g4"><div class="gallery-kanji-art"><span>禅</span></div></div>
+      <div class="g-overlay"><span>Zen Garden</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g5"><div class="gallery-kanji-art"><span>鳥居</span></div></div>
+      <div class="g-overlay"><span>Torii Gate</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g6"><div class="gallery-kanji-art"><span>侍</span></div></div>
+      <div class="g-overlay"><span>Samurai</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g7"><div class="gallery-kanji-art"><span>夜景</span></div></div>
+      <div class="g-overlay"><span>Night View</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g8"><div class="gallery-kanji-art"><span>温泉</span></div></div>
+      <div class="g-overlay"><span>Onsen</span></div>
+    </div>
+    <!-- Duplicate for seamless scroll -->
+    <div class="gallery-item">
+      <div class="g-art g1"><div class="gallery-kanji-art"><span>東京</span></div></div>
+      <div class="g-overlay"><span>Tokyo</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g2"><div class="gallery-kanji-art"><span>桜</span></div></div>
+      <div class="g-overlay"><span>Sakura</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g3"><div class="gallery-kanji-art"><span>富士</span></div></div>
+      <div class="g-overlay"><span>Mt. Fuji</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g4"><div class="gallery-kanji-art"><span>禅</span></div></div>
+      <div class="g-overlay"><span>Zen Garden</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g5"><div class="gallery-kanji-art"><span>鳥居</span></div></div>
+      <div class="g-overlay"><span>Torii Gate</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g6"><div class="gallery-kanji-art"><span>侍</span></div></div>
+      <div class="g-overlay"><span>Samurai</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g7"><div class="gallery-kanji-art"><span>夜景</span></div></div>
+      <div class="g-overlay"><span>Night View</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="g-art g8"><div class="gallery-kanji-art"><span>温泉</span></div></div>
+      <div class="g-overlay"><span>Onsen</span></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section id="cta">
-  <div class="cta-orb-1"></div>
-  <div class="cta-orb-2"></div>
-  <div class="gsap-reveal" style="position:relative;z-index:1">
-    <div class="tag" style="justify-content:center">Let's Build</div>
-    <h2 class="cta-title">
-      Your next client is<br>
-      <span style="background:linear-gradient(90deg,var(--sky),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent">searching right now.</span>
-    </h2>
-    <p class="cta-sub">Book a free 15-minute call. No pitch, no pressure — just an honest conversation about what you need.</p>
-    <a href="https://calendly.com" target="_blank" class="btn-main" style="font-size:15px;padding:18px 48px">📅 Book Your Free Call</a>
+  <span class="cta-torii reveal">⛩️</span>
+  <h2 class="cta-title reveal">Your Japan<br><em>Story</em> Awaits</h2>
+  <p class="cta-sub reveal">Every person who visits Japan returns changed. Start planning the trip that will redefine your idea of beauty, order, and what it means to be alive.</p>
+  <div class="cta-buttons reveal">
+    <a href="#destinations" class="btn-primary">Explore Destinations →</a>
+    <a href="#tips" class="btn-secondary">Travel Tips</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-logo">MY WEB STUDIO</div>
-  <div class="f-copy">© 2025 My Web Studio — Professional Web Designer</div>
-  <div class="f-links">
-    <a href="#work">Work</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://calendly.com" target="_blank">Book a Call</a>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      JAPAN
+      <span class="footer-logo-jp">日本</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#culture">Culture</a></li>
+      <li><a href="#seasons">Seasons</a></li>
+      <li><a href="#food">Cuisine</a></li>
+      <li><a href="#tips">Travel Tips</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 — Japan, Land of the Rising Sun</div>
   </div>
 </footer>
 
 <script>
-// ── THREE.JS HERO — FULL 3D SCENE ────────────────────────────────────────────
+// ── SAKURA PETALS CANVAS ──────────────────────────────────────────────────────
 (function(){
-  const canvas = document.getElementById('hero-canvas');
-  const W = () => window.innerWidth, H = () => window.innerHeight;
+  const canvas = document.getElementById('sakura-canvas');
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
+  document.body.appendChild(canvas);
 
-  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setSize(W(), H());
+  const ctx = canvas.getContext('2d');
+  let W = window.innerWidth, H = window.innerHeight;
+  canvas.width = W; canvas.height = H;
 
-  const scene = new THREE.Scene();
-  const cam = new THREE.PerspectiveCamera(60, W()/H(), 0.1, 2000);
-  cam.position.z = 520;
+  const PETAL_COUNT = 28;
+  const petals = [];
 
-  // Palette
-  const IVORY      = 0xc8b48a;
-  const IVORY_LT   = 0xe8dfc8;
-  const CHARCOAL   = 0x3a4459;
-  const NAVY_MID   = 0x1e3256;
+  function rand(a, b){ return Math.random()*(b-a)+a; }
 
-  // ① TORUS KNOT — dramatic centerpiece
-  const torusKnot = new THREE.Mesh(
-    new THREE.TorusKnotGeometry(85, 2.8, 180, 18, 2, 3),
-    new THREE.MeshBasicMaterial({color:IVORY, wireframe:true, transparent:true, opacity:.13})
-  );
-  scene.add(torusKnot);
-
-  // ② OUTER RINGS — three independent orbits
-  const ringData = [
-    {r:220, tube:1.1, color:IVORY,    opacity:.07, rx:Math.PI/4,  ry:0},
-    {r:280, tube:0.7, color:IVORY_LT, opacity:.04, rx:Math.PI/2,  ry:Math.PI/5},
-    {r:170, tube:1.0, color:CHARCOAL, opacity:.09, rx:0.3,        ry:Math.PI/3},
-  ];
-  const rings = ringData.map(d => {
-    const m = new THREE.Mesh(
-      new THREE.TorusGeometry(d.r, d.tube, 8, 90),
-      new THREE.MeshBasicMaterial({color:d.color, transparent:true, opacity:d.opacity})
-    );
-    m.rotation.x = d.rx; m.rotation.y = d.ry;
-    scene.add(m); return m;
-  });
-
-  // ③ LARGE ICOSAHEDRON (outer cage)
-  const ico = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(145, 1),
-    new THREE.MeshBasicMaterial({color:IVORY, wireframe:true, transparent:true, opacity:.04})
-  );
-  scene.add(ico);
-
-  // ④ FLOATING OCTAHEDRA
-  const octData = [
-    {s:44,  x: 320, y:-90,  z:-110, c:IVORY,    o:.09},
-    {s:28,  x:-300, y:130,  z:-60,  c:IVORY_LT, o:.08},
-    {s:20,  x: 220, y:210,  z: 60,  c:CHARCOAL, o:.11},
-    {s:34,  x:-220, y:-200, z:-90,  c:IVORY,    o:.07},
-    {s:16,  x: 380, y: 90,  z: 30,  c:IVORY_LT, o:.1 },
-    {s:22,  x:-130, y:-280, z:-40,  c:CHARCOAL, o:.08},
-  ];
-  const octas = octData.map(d => {
-    const m = new THREE.Mesh(
-      new THREE.OctahedronGeometry(d.s, 0),
-      new THREE.MeshBasicMaterial({color:d.c, wireframe:true, transparent:true, opacity:d.o})
-    );
-    m.position.set(d.x, d.y, d.z);
-    scene.add(m); return m;
-  });
-
-  // ⑤ DNA DOUBLE HELIX (right side)
-  const strand = (offset, color) => {
-    const hPts = [];
-    for(let i=0;i<100;i++){
-      const t = i/100 * Math.PI*8;
-      hPts.push(new THREE.Vector3(Math.cos(t+offset)*55+380, i*7-350, Math.sin(t+offset)*55-80));
+  class Petal {
+    constructor(){this.reset(true)}
+    reset(init=false){
+      this.x = rand(0, W);
+      this.y = init ? rand(-50, H) : rand(-80, -20);
+      this.size = rand(5, 11);
+      this.speed = rand(0.8, 2.2);
+      this.drift = rand(-0.6, 0.6);
+      this.angle = rand(0, Math.PI*2);
+      this.spin  = rand(-0.025, 0.025);
+      this.sway  = rand(0.4, 1.2);
+      this.swayOffset = rand(0, Math.PI*2);
+      this.opacity = rand(0.4, 0.85);
+      this.tick = 0;
     }
-    const g = new THREE.BufferGeometry().setFromPoints(hPts);
-    scene.add(new THREE.Line(g, new THREE.LineBasicMaterial({color, transparent:true, opacity:.14})));
-  };
-  strand(0,       IVORY);
-  strand(Math.PI, CHARCOAL);
-  // Cross-bars
-  for(let i=0;i<20;i++){
-    const t = (i/20)*Math.PI*8, frac=i/20;
-    const y = frac*700 - 350;
-    const p1 = new THREE.Vector3(Math.cos(t)*55+380,       y, Math.sin(t)*55-80);
-    const p2 = new THREE.Vector3(Math.cos(t+Math.PI)*55+380, y, Math.sin(t+Math.PI)*55-80);
-    const g  = new THREE.BufferGeometry().setFromPoints([p1,p2]);
-    scene.add(new THREE.Line(g, new THREE.LineBasicMaterial({color:IVORY, transparent:true, opacity:.06})));
+    draw(){
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+      ctx.globalAlpha = this.opacity;
+      // Petal shape
+      ctx.beginPath();
+      ctx.moveTo(0, -this.size);
+      ctx.bezierCurveTo(this.size*.6, -this.size*.5, this.size*.6, this.size*.5, 0, this.size);
+      ctx.bezierCurveTo(-this.size*.6, this.size*.5, -this.size*.6, -this.size*.5, 0, -this.size);
+      ctx.closePath();
+
+      const g = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size);
+      g.addColorStop(0, 'rgba(255,210,220,1)');
+      g.addColorStop(0.6, 'rgba(255,183,197,.9)');
+      g.addColorStop(1, 'rgba(220,130,150,.4)');
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.restore();
+    }
+    update(){
+      this.tick++;
+      this.y += this.speed;
+      this.x += this.drift + Math.sin(this.tick*.02 + this.swayOffset)*this.sway;
+      this.angle += this.spin;
+      if(this.y > H+40) this.reset();
+    }
   }
 
-  // ⑥ PARTICLES — denser, two sizes
-  const N = 160;
-  const pts = [], arr = new Float32Array(N*3);
-  for(let i=0;i<N;i++){
-    const p={
-      x:(Math.random()-.5)*1500, y:(Math.random()-.5)*1000, z:(Math.random()-.5)*600,
-      vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.14, vz:(Math.random()-.5)*.08,
-    };
-    pts.push(p);
-    arr[i*3]=p.x; arr[i*3+1]=p.y; arr[i*3+2]=p.z;
+  for(let i=0;i<PETAL_COUNT;i++) petals.push(new Petal());
+
+  function animate(){
+    ctx.clearRect(0,0,W,H);
+    petals.forEach(p=>{p.update();p.draw();});
+    requestAnimationFrame(animate);
   }
-  const pGeo = new THREE.BufferGeometry();
-  const pAttr = new THREE.BufferAttribute(arr, 3);
-  pGeo.setAttribute('position', pAttr);
-  scene.add(new THREE.Points(pGeo,
-    new THREE.PointsMaterial({color:IVORY, size:1.6, transparent:true, opacity:.5, sizeAttenuation:true})));
+  animate();
 
-  // ⑦ CONNECTING LINES
-  const lMat = new THREE.LineBasicMaterial({color:IVORY, transparent:true, opacity:.048});
-  let lMesh=null, f=0;
-  function buildLines(){
-    if(lMesh) scene.remove(lMesh);
-    const lp=[], T=145;
-    for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){
-      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, dz=pts[i].z-pts[j].z;
-      if(dx*dx+dy*dy+dz*dz<T*T) lp.push(pts[i].x,pts[i].y,pts[i].z,pts[j].x,pts[j].y,pts[j].z);
-    }
-    const lg=new THREE.BufferGeometry();
-    lg.setAttribute('position', new THREE.Float32BufferAttribute(lp,3));
-    lMesh=new THREE.LineSegments(lg,lMat);
-    scene.add(lMesh);
-  }
-
-  // ⑧ GRID FLOOR
-  const grid = new THREE.GridHelper(1400, 28, CHARCOAL, CHARCOAL);
-  grid.position.y = -340;
-  grid.material.transparent=true; grid.material.opacity=.045;
-  scene.add(grid);
-
-  // Mouse parallax with smoothing
-  let mx=0, my=0, tmx=0, tmy=0;
-  addEventListener('mousemove', e=>{tmx=(e.clientX/W()-.5)*2; tmy=(e.clientY/H()-.5)*2;});
-
-  (function tick(){
-    requestAnimationFrame(tick); f++;
-    mx+=(tmx-mx)*.035; my+=(tmy-my)*.035;
-
-    // Move particles
-    for(let i=0;i<N;i++){
-      pts[i].x+=pts[i].vx; pts[i].y+=pts[i].vy; pts[i].z+=pts[i].vz;
-      if(Math.abs(pts[i].x)>750) pts[i].vx*=-1;
-      if(Math.abs(pts[i].y)>500) pts[i].vy*=-1;
-      if(Math.abs(pts[i].z)>300) pts[i].vz*=-1;
-      arr[i*3]=pts[i].x; arr[i*3+1]=pts[i].y; arr[i*3+2]=pts[i].z;
-    }
-    pAttr.needsUpdate=true;
-    if(f%3===0) buildLines();
-
-    // Rotate central shapes
-    torusKnot.rotation.x += .0028; torusKnot.rotation.y += .0045;
-    ico.rotation.x += .0003;       ico.rotation.y += .0006;
-
-    // Rings
-    rings[0].rotation.z += .0005;
-    rings[1].rotation.x += .0003; rings[1].rotation.z -= .0004;
-    rings[2].rotation.y += .0006; rings[2].rotation.x -= .0002;
-
-    // Float octahedra
-    const t = f*.007;
-    octas.forEach((o,i)=>{
-      o.rotation.x+=.0025+i*.0008; o.rotation.y+=.002+i*.001;
-      o.position.y += Math.sin(t+i*1.4)*.18;
-    });
-
-    // Grid subtle movement
-    grid.position.y = -340 + Math.sin(t*.3)*8;
-
-    // Camera
-    cam.position.x+=(mx*32-cam.position.x)*.025;
-    cam.position.y+=(-my*20-cam.position.y)*.025;
-    cam.lookAt(scene.position);
-    renderer.render(scene, cam);
-  })();
-
-  addEventListener('resize',()=>{
-    cam.aspect=W()/H(); cam.updateProjectionMatrix(); renderer.setSize(W(),H());
+  window.addEventListener('resize',()=>{
+    W=window.innerWidth; H=window.innerHeight;
+    canvas.width=W; canvas.height=H;
   });
 })();
 
-// ── GSAP ANIMATIONS ──────────────────────────────────────────────────────────
+// ── NAV SCROLL ────────────────────────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── GSAP SCROLL REVEALS ───────────────────────────────────────────────────────
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero entrance — staggered, spring-like
-gsap.from('#hero-pill',  {opacity:0, y:20, duration:.7, ease:'back.out(1.4)', delay:.2});
-gsap.from('#h-line1',    {opacity:0, y:60, duration:.9, ease:'power4.out',    delay:.4});
-gsap.from('#h-line2',    {opacity:0, y:60, duration:.9, ease:'power4.out',    delay:.55});
-gsap.from('#hero-sub',   {opacity:0, y:30, duration:.8, ease:'power3.out',    delay:.75});
-gsap.from('#hero-price', {opacity:0, y:24, duration:.7, ease:'power3.out',    delay:.9});
-gsap.from('#hero-btns',  {opacity:0, y:24, duration:.7, ease:'power3.out',    delay:1.05});
+// Hero entrance
+gsap.from('#ht1',    {opacity:0,y:80,duration:1.1,ease:'power4.out',delay:.3});
+gsap.from('#ht2',    {opacity:0,y:80,duration:1.1,ease:'power4.out',delay:.5});
+gsap.from('#ht3',    {opacity:0,y:80,duration:1.1,ease:'power4.out',delay:.7});
+gsap.from('#hero-sub',   {opacity:0,y:30,duration:.9,ease:'power3.out',delay:.95});
+gsap.from('#hero-stats', {opacity:0,y:20,duration:.8,ease:'power3.out',delay:1.1});
+gsap.from('.hero-scroll',{opacity:0,y:16,duration:.8,ease:'power3.out',delay:1.3});
+gsap.from('.hero-eyebrow',{opacity:0,x:-20,duration:.8,ease:'power3.out',delay:.15});
 
-// Stats counter animation
-gsap.from('.stat-item', {
-  opacity:0, y:30,
-  duration:.6, ease:'power3.out',
-  stagger:.12,
-  scrollTrigger:{trigger:'#stats', start:'top 85%'},
+// Generic reveals
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{
+    opacity:1,y:0,
+    duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 88%'},
+  });
 });
-
-// Section reveals with stagger
-gsap.utils.toArray('.gsap-reveal').forEach(el => {
-  gsap.to(el, {
-    opacity:1, y:0,
-    duration:.9, ease:'power3.out',
-    scrollTrigger:{trigger:el, start:'top 88%'},
+gsap.utils.toArray('.reveal-left').forEach(el=>{
+  gsap.to(el,{
+    opacity:1,x:0,
+    duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 85%'},
+  });
+});
+gsap.utils.toArray('.reveal-right').forEach(el=>{
+  gsap.to(el,{
+    opacity:1,x:0,
+    duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 85%'},
+  });
+});
+gsap.utils.toArray('.reveal-scale').forEach(el=>{
+  gsap.to(el,{
+    opacity:1,scale:1,
+    duration:.9,ease:'back.out(1.2)',
+    scrollTrigger:{trigger:el,start:'top 87%'},
   });
 });
 
-// Service items stagger
-gsap.from('.svc-item', {
-  opacity:0, y:40,
-  duration:.7, ease:'power3.out', stagger:.15,
-  scrollTrigger:{trigger:'.svc-grid', start:'top 80%'},
+// Food cards stagger
+gsap.from('.food-card',{
+  opacity:0,y:40,scale:.97,
+  duration:.7,ease:'back.out(1.2)',stagger:.1,
+  scrollTrigger:{trigger:'.food-grid',start:'top 80%'},
 });
 
-// Case cards stagger
-gsap.from('.case-card', {
-  opacity:0, y:50, scale:.97,
-  duration:.8, ease:'back.out(1.2)', stagger:.18,
-  scrollTrigger:{trigger:'.work-grid', start:'top 80%'},
+// Tips stagger
+gsap.from('.tip-item',{
+  opacity:0,y:30,
+  duration:.6,ease:'power3.out',stagger:.07,
+  scrollTrigger:{trigger:'.tips-grid',start:'top 80%'},
 });
 
-// Pricing cards
-gsap.from('.p-card', {
-  opacity:0, y:40, scale:.98,
-  duration:.8, ease:'back.out(1.2)', stagger:.2,
-  scrollTrigger:{trigger:'.pricing-wrap', start:'top 80%'},
+// Dest cards stagger
+gsap.from('.dest-card',{
+  opacity:0,y:60,
+  duration:.8,ease:'power3.out',stagger:.12,
+  scrollTrigger:{trigger:'#dest-scroll',start:'top 82%'},
 });
 
-// FAQ items
-gsap.from('.faq-item', {
-  opacity:0, x:-20,
-  duration:.6, ease:'power3.out', stagger:.08,
-  scrollTrigger:{trigger:'.faq-list', start:'top 82%'},
+// Parallax on hero kanji bg
+gsap.to('.hero-kanji-bg',{
+  yPercent:20,ease:'none',
+  scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true},
 });
 
-// Parallax on hero glows
-gsap.to('.hero-glow-1', {
-  yPercent:-30, ease:'none',
-  scrollTrigger:{trigger:'#hero', start:'top top', end:'bottom top', scrub:true},
-});
-gsap.to('.hero-glow-2', {
-  yPercent:-20, ease:'none',
-  scrollTrigger:{trigger:'#hero', start:'top top', end:'bottom top', scrub:true},
-});
-
-// Nav scroll
-window.addEventListener('scroll', ()=>{
-  document.getElementById('nav').style.background =
-    scrollY > 60 ? 'rgba(11,21,38,.97)' : 'rgba(11,21,38,.8)';
-});
-
-// ── 3D CARD TILT ─────────────────────────────────────────────────────────────
-document.querySelectorAll('.svc-item, .case-card, .p-card').forEach(card => {
-  card.style.willChange = 'transform';
-  card.addEventListener('mousemove', e => {
+// ── 3D CARD TILT ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.food-card, .tip-item, .culture-cell').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
     const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width  - .5;
-    const y = (e.clientY - r.top)  / r.height - .5;
-    card.style.transform = `perspective(900px) rotateY(${x*10}deg) rotateX(${-y*8}deg) translateZ(8px) scale(1.02)`;
-    card.style.transition = 'transform .1s ease';
+    const x = (e.clientX-r.left)/r.width-.5;
+    const y = (e.clientY-r.top)/r.height-.5;
+    card.style.transform = `perspective(800px) rotateY(${x*8}deg) rotateX(${-y*6}deg) translateZ(6px)`;
+    card.style.transition = 'transform .08s ease';
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0) scale(1)';
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
     card.style.transition = 'transform .5s cubic-bezier(.23,1,.32,1)';
   });
 });
 
-// ── FAQ ───────────────────────────────────────────────────────────────────────
-function toggleFaq(el){
-  const item = el.parentElement;
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if(!wasOpen) item.classList.add('open');
+// ── SEASONS TABS ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.s-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const season = tab.dataset.season;
+    document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.seasons-content').forEach(c=>c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('s-'+season).classList.add('active');
+
+    // Re-trigger reveal for newly shown content
+    document.querySelectorAll('#s-'+season+' .reveal-left,#s-'+season+' .reveal-right').forEach(el=>{
+      gsap.fromTo(el,{opacity:0,x:el.classList.contains('reveal-left')?-30:30},{opacity:1,x:0,duration:.7,ease:'power3.out'});
+    });
+  });
+});
+
+// ── SMOOTH DEST DRAG SCROLL ───────────────────────────────────────────────────
+(function(){
+  const el = document.getElementById('dest-scroll');
+  let isDown=false, startX, scrollLeft;
+  el.addEventListener('mousedown',e=>{isDown=true;startX=e.pageX-el.offsetLeft;scrollLeft=el.scrollLeft;});
+  el.addEventListener('mouseleave',()=>{isDown=false});
+  el.addEventListener('mouseup',()=>{isDown=false});
+  el.addEventListener('mousemove',e=>{
+    if(!isDown)return;
+    e.preventDefault();
+    const x=e.pageX-el.offsetLeft;
+    el.scrollLeft=scrollLeft-(x-startX)*1.5;
+  });
+  // Make it look scrollable
+  el.style.overflow='auto';
+  el.style.cursor='grab';
+})();
+
+// ── COUNTER ANIMATION ─────────────────────────────────────────────────────────
+function animateCounter(el, target, suffix=''){
+  let start=0;
+  const duration=1800;
+  const step = timestamp => {
+    if(!start) start=timestamp;
+    const progress = Math.min((timestamp-start)/duration, 1);
+    const ease = 1-Math.pow(1-progress,3);
+    el.textContent = Math.floor(ease*target).toLocaleString() + suffix;
+    if(progress<1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
 }
+
+// Trigger counter on hero visible (already visible on load)
+setTimeout(()=>{
+  document.querySelector('.hero-stat:nth-child(1) .num').textContent = '6,852';
+  document.querySelector('.hero-stat:nth-child(2) .num').textContent = '47';
+  document.querySelector('.hero-stat:nth-child(3) .num').textContent = '2,600+';
+},1200);
 </script>
 </body>
 </html>
